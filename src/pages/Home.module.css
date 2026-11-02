@@ -1,0 +1,179 @@
+/*
+ * Home — Figma 285:24. All N * var(--s) values are Figma pixels at 1440.
+ * The pond uses --d so its decorations can keep a legible size on phones.
+ */
+
+/* ---------- hero (304:668) ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(24px, calc(38 * var(--s)));
+  padding: max(56px, calc(224 * var(--s))) 20px max(64px, calc(131 * var(--s)));
+  text-align: center;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(12px, calc(20 * var(--s)));
+}
+
+.title {
+  font: var(--type-display-lg);
+  letter-spacing: var(--tracking-display);
+  color: var(--heading);
+}
+
+.tagline {
+  font: var(--type-body);
+  color: var(--body-dark);
+  text-wrap: balance;
+}
+
+.status {
+  font: var(--type-label);
+  color: var(--body-dark);
+}
+
+/* ---------- pond (300:475) ---------- */
+.pond {
+  --d: var(--s);
+  --water-start: calc(99 * var(--d));
+
+  position: relative;
+  padding-bottom: calc(161 * var(--d));
+  background:
+    /* sand → warm sand, then the water (sampled from Figma 288:182) */
+    linear-gradient(var(--sand), var(--sand-warm)) 0 0 / 100% var(--water-start) no-repeat,
+    linear-gradient(
+      176deg,
+      var(--water-top) calc(50 * var(--d)),
+      #8FB7E0 calc(260 * var(--d)),
+      #5B96CE calc(400 * var(--d)),
+      #2E72B4 calc(520 * var(--d)),
+      #2A6AA9 calc(760 * var(--d))
+    ) 0 var(--water-start) / 100% calc(100% - var(--water-start)) no-repeat;
+}
+
+/* 1440-wide coordinate space for the decorations, centered on wide screens */
+.stage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--frame);
+  height: calc(400 * var(--d));
+  transform: translateX(-50%);
+  pointer-events: none;
+  /* above the content box so the frog can be hovered; everything else ignores the pointer */
+  z-index: 2;
+}
+
+.decor {
+  position: absolute;
+  height: auto;
+}
+
+.frog      { left: calc(43 * var(--d));   top: calc(79 * var(--d));  width: calc(169 * var(--d)); }
+.lilyLeft  { left: calc(227 * var(--d));  top: calc(73 * var(--d));  width: calc(124 * var(--d)); }
+.koi       { left: calc(50% - 137 * var(--d)); top: calc(171 * var(--d)); width: calc(263 * var(--d)); }
+.lilyRight { left: calc(1099 * var(--d)); top: calc(138 * var(--d)); width: calc(133 * var(--d)); }
+.lilyStem  { left: calc(1215 * var(--d)); top: 0;                    width: calc(196 * var(--d)); }
+
+/*
+ * Koi: three layers on the 526×330 canvas of the original Koi_Group export.
+ * Each fish pivots on its own body center: left (139, 176), right (386, 109).
+ */
+.koi {
+  aspect-ratio: 526 / 330;
+}
+
+.koi img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.koi .koiLeft  { transform-origin: 26.4% 53.3%; }
+.koi .koiRight { transform-origin: 73.4% 33%; }
+
+/* only the frog's pad and the koi move, and only barely */
+@media (prefers-reduced-motion: no-preference) {
+  .frog          { animation: drift 13s ease-in-out -4s infinite; }
+  .koi .koiLeft  { animation: bob 9s ease-in-out infinite; }
+  .koi .koiRight { animation: bob 11s ease-in-out -4s infinite reverse; }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50%      { transform: translate(0.6%, -0.4%) rotate(1.5deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  30%      { transform: translate(3px, -2px) rotate(1deg); }
+  65%      { transform: translate(-2px, 1.5px) rotate(-0.8deg); }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 40px, calc(1235 * var(--s)));
+  margin: 0 auto;
+  padding-top: calc(366 * var(--d));
+}
+
+.heading {
+  padding-left: calc(16 * var(--s));
+  font: var(--type-display-md);
+  letter-spacing: var(--tracking-display);
+  color: var(--deep-teal);
+}
+
+/* Figma 397:294 — two 603px columns, 29px apart, cards 52px apart. */
+.projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(29 * var(--s));
+  margin-top: max(32px, calc(53 * var(--s)));
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: calc(52 * var(--s));
+}
+
+@media (max-width: 1023px) {
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* drop the column wrappers so the cards fall back into their original order */
+  .column {
+    display: contents;
+  }
+}
+
+@media (max-width: 767px) {
+  .pond {
+    --d: 0.5px;
+  }
+
+  .koi,
+  .lilyRight {
+    display: none;
+  }
+
+  .lilyStem {
+    left: auto;
+    right: 8px;
+  }
+
+  .heading {
+    padding-left: 0;
+  }
+}

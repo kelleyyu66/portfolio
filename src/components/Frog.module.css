@@ -1,0 +1,23 @@
+/* Frog_Group.png and Frog_Blink.png share one 338×325 canvas; only the eyes differ. */
+.frog {
+  pointer-events: auto;
+  aspect-ratio: 338 / 325;
+}
+
+.open,
+.closed {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* swap rather than overlay, so the soft shadow never doubles up */
+.closed,
+.blinking .open {
+  visibility: hidden;
+}
+
+.blinking .closed {
+  visibility: visible;
+}

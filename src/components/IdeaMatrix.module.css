@@ -1,0 +1,220 @@
+/*
+ * Figma 574:7258. The plot is an 832×530 coordinate space. The card is its own
+ * container and --u is one of those Figma pixels, so the labels, chips and
+ * legend shrink with the plot instead of overflowing it once the type tokens
+ * hit their floor.
+ */
+.root {
+  width: 100%;
+}
+
+.card {
+  --u: calc(1cqw / 8.32);
+
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 832 / 530;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.title {
+  position: absolute;
+  top: calc(24 * var(--u));
+  left: 0;
+  width: 100%;
+  font: 500 calc(18 * var(--u)) / 1.348 var(--font-text);
+  letter-spacing: var(--tracking-label);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+.caption {
+  position: absolute;
+  top: calc(59 * var(--u));
+  left: 0;
+  width: 100%;
+  font: 400 calc(16 * var(--u)) / 1.5625 var(--font-text);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+/* ---------- axes ---------- */
+.axes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--charcoal);
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.axisLabel {
+  position: absolute;
+  font: 500 calc(18 * var(--u)) / 1.348 var(--font-text);
+  letter-spacing: var(--tracking-label);
+  color: var(--charcoal);
+  white-space: nowrap;
+}
+
+.axisY {
+  top: calc(269 * var(--u));
+  left: calc(60 * var(--u));
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.axisX {
+  top: calc(480 * var(--u));
+  left: calc(420 * var(--u));
+  transform: translateX(-50%);
+}
+
+/* ---------- chips ---------- */
+.chipWrap {
+  position: absolute;
+  display: inline-flex;
+}
+
+.chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(6 * var(--u));
+  padding: calc(6 * var(--u)) calc(8 * var(--u));
+  border: 1px solid transparent;
+  border-radius: calc(4 * var(--u));
+  font: 500 calc(16 * var(--u)) / 1.348 var(--font-text);
+  color: var(--charcoal);
+  white-space: nowrap;
+}
+
+.pursued {
+  background: var(--chip-green);
+}
+
+.dropped {
+  border-style: dashed;
+  border-color: var(--ember);
+  background: var(--amber-chip);
+}
+
+.chipButton {
+  position: relative;
+  padding-right: calc(10 * var(--u));
+  font-family: inherit;
+  cursor: help;
+}
+
+.chipArrow {
+  flex-shrink: 0;
+  width: calc(8 * var(--u));
+  height: calc(8 * var(--u));
+  color: var(--ember);
+}
+
+/* the caption's arrow sits on the text baseline rather than in a flex row */
+.caption .chipArrow {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+/* ---------- legend ---------- */
+.legend {
+  position: absolute;
+  top: calc(378 * var(--u));
+  left: calc(669 * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: calc(6 * var(--u));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 400 calc(14 * var(--u)) / 1.348 var(--font-text);
+  color: var(--charcoal);
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--u));
+  white-space: nowrap;
+}
+
+.swatch {
+  width: calc(16 * var(--u));
+  height: calc(16 * var(--u));
+  border: 1px solid transparent;
+  border-radius: calc(4 * var(--u));
+}
+
+/* ---------- exploration overlay ---------- */
+.anchor {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  z-index: 3;
+  /* the gap to the chip is padding, so the pointer can cross it */
+  padding-left: calc(12 * var(--u));
+  transform: translateY(-50%);
+}
+
+/* chips near the right edge open to their left instead */
+.anchorFlip {
+  left: auto;
+  right: 100%;
+  padding-left: 0;
+  padding-right: calc(12 * var(--u));
+}
+
+.anchor[hidden] {
+  display: none;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 * var(--u));
+  width: calc(300 * var(--u));
+  padding: calc(16 * var(--u));
+  border: 1px solid var(--border);
+  border-radius: calc(12 * var(--u));
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+}
+
+.overlayImage {
+  width: 100%;
+  height: auto;
+  border-radius: calc(8 * var(--u));
+}
+
+.overlayImageSquare {
+  width: calc(152 * var(--u));
+}
+
+.overlayText {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--u));
+}
+
+.overlayTitle {
+  font: 600 calc(16 * var(--u)) / 1.348 var(--font-text);
+  color: var(--charcoal);
+}
+
+.overlayBody {
+  font: 400 calc(14 * var(--u)) / 1.348 var(--font-text);
+  color: var(--charcoal);
+}
+
+/* the frame sets this in --ember, which only reaches 3:1 on white at 14px */
+.overlayReason {
+  font: 400 calc(14 * var(--u)) / 1.348 var(--font-text);
+  color: var(--ember-deep);
+}

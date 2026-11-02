@@ -1,0 +1,192 @@
+/*
+ * Three rows on one grid: 196px rail + 24px gutter + 460px of copy (Figma 508:2435).
+ * Each rail is placed from its own row to the last one, so the rails overlap and
+ * their sticky pieces stack up as you scroll.
+ *
+ * The stage holds its full 680px measure all the way down to 680px of viewport
+ * rather than scaling with the page, so nothing in here crunches on the way;
+ * --u is one Figma pixel of that measure.
+ */
+.stage {
+  container-type: inline-size;
+  width: min(100% - 40px, 680px);
+  margin-inline: auto;
+}
+
+.rows {
+  --pin: clamp(96px, 20vh, 200px);
+  --u: calc(1cqw / 6.8);
+
+  display: grid;
+  grid-template-columns: 28.824% 67.647%;
+  /* explicit rows, so a rail's `grid-row: n / -1` really does reach the last one */
+  grid-template-rows: auto auto auto;
+  column-gap: 3.529%;
+  row-gap: calc(80 * var(--u));
+  justify-content: center;
+}
+
+.rail {
+  grid-column: 1;
+  /* the rails sit on top of each other; nothing in them is interactive */
+  pointer-events: none;
+}
+
+.rail1 { grid-row: 1 / -1; }
+.rail2 { grid-row: 2 / -1; }
+.rail3 { grid-row: 3 / -1; }
+
+.body { grid-column: 2; }
+.body1 { grid-row: 1; }
+.body2 { grid-row: 2; }
+.body3 { grid-row: 3; }
+
+/* ---------- the stack ---------- */
+.piece {
+  position: sticky;
+  display: block;
+  height: auto;
+}
+
+/* offsets from the shared drawing: scoop and sprinkles share an origin, the cone
+   hangs 53.5 below it, so pinning them at these tops rebuilds the whole cone */
+.cone {
+  top: calc(var(--pin) + 53.5 * var(--u));
+  width: calc(120 * var(--u));
+  margin: calc(53.5 * var(--u)) 0 0 calc(38 * var(--u));
+}
+
+.scoop,
+.sprinkles {
+  top: var(--pin);
+  width: calc(140 * var(--u));
+  margin-left: calc(28 * var(--u));
+}
+
+/* ---------- caption ---------- */
+.caption {
+  position: sticky;
+  top: calc(var(--pin) + 259.5 * var(--u));
+  display: grid;
+  margin-top: calc(24 * var(--u));
+  font: var(--type-label);
+  line-height: 1.5625;
+  color: var(--stone);
+  text-align: center;
+}
+
+.captionLine {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 320ms var(--ease-ripple);
+}
+
+.captionLine[data-on='true'] {
+  opacity: 1;
+}
+
+/* only the first rail carries the cross-fading caption on desktop */
+.captionStacked {
+  display: none;
+}
+
+/* ---------- copy ---------- */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--u));
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--u));
+}
+
+.title {
+  font: var(--type-subsection);
+  color: var(--charcoal);
+}
+
+.copy {
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+/* ---------- phone panel ---------- */
+.panel {
+  display: flex;
+  /* flex-start, or the recording is stretched to the panel's own height */
+  align-items: flex-start;
+  justify-content: center;
+  height: calc(640 * var(--u));
+  padding-top: calc(36 * var(--u));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--sky-wash);
+}
+
+.phone {
+  width: calc(260 * var(--u));
+  height: auto;
+  border-radius: calc(28 * var(--u));
+  box-shadow: 0 3px 16px rgb(0 0 0 / 0.12);
+}
+
+@media (max-width: 680px) {
+  /* one column: each piece sits above its own row with its own caption */
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .piece {
+    position: static;
+    margin: 0;
+    width: auto;
+  }
+
+  .cone { height: 182px; }
+  .scoop { height: 132px; }
+  .sprinkles { height: 66px; }
+
+  .caption {
+    display: none;
+  }
+
+  .captionStacked {
+    display: block;
+    margin-top: 20px;
+    font: var(--type-label);
+    line-height: 1.5625;
+    color: var(--stone);
+    text-align: center;
+  }
+
+  .body {
+    gap: 24px;
+  }
+
+  .panel {
+    height: auto;
+    padding: 32px 20px;
+  }
+
+  .phone {
+    width: min(260px, 100%);
+    border-radius: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .captionLine {
+    transition: none;
+  }
+}

@@ -1,0 +1,283 @@
+/*
+ * Case study template. Light pages so the work leads (design.md §11.2);
+ * the pond only returns at the end. Type follows TYPE_STYLE_GUIDE.md.
+ */
+
+.container {
+  width: min(100% - 40px, calc(1240 * var(--s)));
+  margin: 0 auto;
+}
+
+/* ---------- hero ---------- */
+.hero {
+  padding-top: max(48px, calc(120 * var(--s)));
+}
+
+.eyebrow {
+  font: var(--type-label);
+  color: var(--forest);
+}
+
+.title {
+  margin-top: max(12px, calc(16 * var(--s)));
+  font: var(--type-display-lg);
+  letter-spacing: var(--tracking-display);
+  color: var(--heading);
+}
+
+.outcome {
+  max-width: 44rem;
+  margin-top: max(16px, calc(24 * var(--s)));
+  font: var(--type-section);
+  font-weight: 400;
+  color: var(--charcoal);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 24px;
+  margin: max(32px, calc(56 * var(--s))) 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.meta dt {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.meta dd {
+  margin: 4px 0 0;
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+/* lily-pad frame: paper card, one notched corner, flat lichen layer behind */
+.heroFrame {
+  margin-top: max(40px, calc(72 * var(--s)));
+  padding: max(12px, calc(16 * var(--s)));
+  border-radius: 24px 24px 24px 4px;
+  background: var(--paper);
+  box-shadow: 10px 10px 0 var(--lichen);
+}
+
+.heroFrame .figure {
+  width: 100%;
+  margin: 0;
+}
+
+.heroFrame .placeholder {
+  aspect-ratio: 16 / 9;
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* ---------- at a glance ---------- */
+.glance {
+  margin-top: max(64px, calc(120 * var(--s)));
+  padding: max(48px, calc(88 * var(--s))) 0;
+  background: var(--paper);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: max(32px, calc(56 * var(--s)));
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.highlightValue {
+  font: var(--type-display-md);
+  letter-spacing: var(--tracking-display);
+  color: var(--forest);
+}
+
+.highlightLabel {
+  font: var(--type-body);
+  color: var(--ink);
+}
+
+/* ---------- the story ---------- */
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: max(72px, calc(120 * var(--s)));
+  padding: max(72px, calc(120 * var(--s))) 0 max(96px, calc(168 * var(--s)));
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(32px, calc(56 * var(--s)));
+}
+
+/* one reading column, 60–70 characters */
+.column {
+  width: min(100% - 40px, 34rem);
+}
+
+.heading {
+  font: var(--type-display-md);
+  letter-spacing: var(--tracking-display);
+  color: var(--deep-teal);
+}
+
+.paragraph {
+  margin-top: 16px;
+  font: var(--type-body);
+  /* Figma's Body 2 leading (1.348) is too tight for running prose */
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.heading + .paragraph {
+  margin-top: max(16px, calc(24 * var(--s)));
+}
+
+/* ---------- images: column (reading width), wide, full (edge to edge) ---------- */
+.figure {
+  margin: 0;
+}
+
+.imgColumn {
+  width: min(100% - 40px, 34rem);
+}
+
+.imgWide {
+  width: min(100% - 40px, 1040px);
+}
+
+.imgFull {
+  width: 100%;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.imgFull .img {
+  border-radius: 0;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  border: 1px dashed var(--clay);
+  border-radius: 16px;
+  background: var(--paper);
+  font: var(--type-label);
+  color: var(--ink);
+  text-align: center;
+}
+
+.imgColumn .placeholder { aspect-ratio: 4 / 3; }
+.imgWide .placeholder   { aspect-ratio: 16 / 9; }
+.imgFull .placeholder   { aspect-ratio: 21 / 9; border-radius: 0; border-inline: 0; }
+
+.caption {
+  margin-top: 12px;
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.imgFull .caption {
+  width: min(100% - 40px, 1040px);
+  margin-inline: auto;
+}
+
+/* ---------- pull quote ---------- */
+.quote {
+  width: min(100% - 40px, 46rem);
+  margin: max(24px, calc(48 * var(--s))) auto;
+  text-align: center;
+}
+
+/* small ember mark above the quote */
+.quote::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0 auto max(20px, calc(32 * var(--s)));
+  border-radius: 50%;
+  background: var(--ember);
+}
+
+.quote blockquote {
+  margin: 0;
+  font: var(--type-display-md);
+  letter-spacing: var(--tracking-display);
+  color: var(--forest);
+  text-wrap: balance;
+}
+
+.quote figcaption {
+  margin-top: 20px;
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+/* ---------- back into the pond ---------- */
+.next {
+  position: relative;
+}
+
+.waterline {
+  height: max(40px, calc(80 * var(--s)));
+  fill: var(--water-top);
+}
+
+.water {
+  padding: max(24px, calc(40 * var(--s))) 0 max(96px, calc(168 * var(--s)));
+  background: linear-gradient(var(--water-top), #5B96CE calc(260 * var(--s)), #2E72B4 calc(420 * var(--s)), #2A6AA9 calc(760 * var(--s)));
+}
+
+.water .container {
+  position: relative;
+}
+
+/* the project card is sized for a grid column, so hold it to that width here */
+.water .container > article {
+  max-width: calc(603 * var(--s));
+}
+
+.lily {
+  position: absolute;
+  top: calc(-60 * var(--s));
+  right: calc(40 * var(--s));
+  width: max(72px, calc(133 * var(--s)));
+  height: auto;
+  pointer-events: none;
+}
+
+.nextHeading {
+  margin-bottom: max(24px, calc(48 * var(--s)));
+  padding-left: calc(16 * var(--s));
+  font: var(--type-display-md);
+  letter-spacing: var(--tracking-display);
+  color: var(--deep-teal);
+}
+
+@media (max-width: 767px) {
+  .lily {
+    top: -40px;
+    right: 0;
+  }
+
+  .nextHeading {
+    padding-left: 0;
+    padding-right: 80px;
+  }
+}

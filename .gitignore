@@ -1,0 +1,16 @@
+node_modules
+dist
+.DS_Store
+*.local
+*.tsbuildinfo
+
+# per-machine Claude Code permissions, not project config
+.claude/settings.local.json
+
+# Source material kept locally, not in the repo.
+# Assets/ holds the raw .mov screen recordings (53 MB) that are already encoded
+# into the mp4s under src/assets/rtj/, plus PNGs duplicated in src/assets/.
+# References/ is moodboard and competitor-research imagery that isn't ours to publish.
+/Assets/
+/References/
+/Illustrations/

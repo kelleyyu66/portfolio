@@ -1,0 +1,11 @@
+.wave {
+  display: block;
+  width: 100%;
+  /* overlap by a pixel so no sliver of the page shows through the seam */
+  margin-bottom: -1px;
+}
+
+.flip {
+  margin: -1px 0 0;
+  transform: scaleY(-1);
+}

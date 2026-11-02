@@ -1,0 +1,54 @@
+/* Figma 285:29 — 1280px row starting 60px in, so the links end flush with the project column. */
+.nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--frame);
+  margin: 0 auto;
+  padding: max(20px, calc(30 * var(--s))) max(20px, calc(100 * var(--s))) 0 max(20px, calc(60 * var(--s)));
+}
+
+.logo {
+  display: block;
+  flex-shrink: 0;
+  width: max(48px, calc(72 * var(--s)));
+  border-radius: 10.8px;
+  transition: transform 240ms var(--ease-ripple);
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.logo:hover {
+  transform: rotate(-4deg);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: max(24px, calc(40 * var(--s)));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  font: var(--type-body);
+  color: var(--nav-ink);
+  transition: color 120ms ease-out;
+}
+
+.link:hover,
+.link[aria-current='page'] {
+  color: var(--ember-deep);
+}
+
+@media (max-width: 480px) {
+  .links {
+    gap: 16px;
+  }
+}

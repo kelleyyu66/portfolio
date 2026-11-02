@@ -1,0 +1,734 @@
+/*
+ * Figma 380:43 — a 1440×13501 frame. Three measures run through it: a 680px
+ * reading column, 1030px for cards and imagery, and a full-bleed band of water.
+ * Everything is drawn on the Figma pixel grid and scales with --s.
+ */
+.page {
+  --col:  min(100% - 40px, max(544px, calc(680 * var(--s))));
+  --wide: min(100% - 40px, max(544px, calc(1030 * var(--s))));
+  --card: min(100% - 40px, max(544px, calc(832 * var(--s))));
+  --gap:  max(56px, calc(80 * var(--s)));
+
+  /* the file's Body 2 and Body 3 lead at 1.6 and 1.5625 here; the home page
+     keeps the tighter leading it was measured against */
+  --type-body:  400 var(--size-body) / 1.6 var(--font-text);
+  --type-label: 400 var(--size-label) / 1.5625 var(--font-text);
+
+  padding-bottom: var(--gap);
+}
+
+.col  { width: var(--col);  margin-inline: auto; }
+.wide { width: var(--wide); margin-inline: auto; }
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+  margin-top: var(--gap);
+}
+
+/* ---------- shared pieces ---------- */
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--s));
+}
+
+/* sections whose eyebrow doubles as the heading sit closer to what follows */
+.tight {
+  gap: calc(20 * var(--s));
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--s));
+}
+
+.eyebrow {
+  font: var(--type-eyebrow);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.eyebrowDark {
+  color: var(--deep-teal);
+}
+
+.heading {
+  font: var(--type-section);
+  color: var(--charcoal);
+}
+
+.subheading {
+  font: var(--type-subsection);
+  color: var(--charcoal);
+}
+
+.copy {
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+.small {
+  font: var(--type-label);
+  color: var(--charcoal);
+}
+
+.copy strong,
+.small strong {
+  font-weight: 600;
+}
+
+.arrow {
+  flex: none;
+  width: calc(32 * var(--s));
+  min-width: 20px;
+  height: auto;
+  color: var(--charcoal);
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--s));
+  margin: 0;
+}
+
+.figureImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.figure figcaption {
+  font: var(--type-label);
+  color: var(--ink);
+  text-align: center;
+}
+
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  padding: calc(16 * var(--s));
+  border: 1px solid var(--ember-deep);
+  border-radius: 12px;
+  background: var(--amber-wash);
+}
+
+.calloutLabel {
+  font: var(--type-eyebrow-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ember-deep);
+}
+
+.quote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(16 * var(--s));
+  margin: 0;
+  text-align: center;
+}
+
+.quoteMark {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ember);
+}
+
+.quote blockquote {
+  margin: 0;
+  font: var(--type-quote);
+  color: var(--charcoal);
+  text-wrap: balance;
+}
+
+.quote figcaption {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+/* ---------- hero ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: calc(36 * var(--s));
+  padding-top: max(40px, calc(117 * var(--s)));
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  gap: calc(24 * var(--s));
+}
+
+.title {
+  font: var(--type-display-sm);
+  letter-spacing: var(--tracking-display);
+  color: var(--charcoal);
+}
+
+.subtitle {
+  max-width: calc(640 * var(--s));
+  font: 400 var(--size-section) / 1.2 var(--font-text);
+  color: var(--charcoal);
+}
+
+.rule {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: calc(206 * var(--s)) calc(267 * var(--s)) calc(162 * var(--s)) calc(209 * var(--s));
+  justify-content: space-between;
+  row-gap: calc(24 * var(--s));
+  margin: 0;
+}
+
+.meta dt {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.meta dd {
+  margin: calc(6 * var(--s)) 0 0;
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+/* ---------- intro ---------- */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--s));
+}
+
+.lede {
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+/* ---------- A → B diagrams ---------- */
+.diagrams {
+  display: flex;
+  justify-content: center;
+  gap: calc(120 * var(--s));
+}
+
+.diagram {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(20 * var(--s));
+  margin: 0;
+}
+
+.diagram img {
+  width: auto;
+  height: calc(152 * var(--s));
+  min-height: 108px;
+}
+
+.diagram figcaption {
+  font: var(--type-label);
+  color: var(--ink);
+  text-align: center;
+}
+
+/* ---------- fun finding ---------- */
+.funFinding {
+  display: flex;
+  align-items: center;
+  gap: calc(40 * var(--s));
+  padding: calc(20 * var(--s)) calc(40 * var(--s));
+  border-radius: 12px;
+  background: rgb(241 243 236 / 0.9);
+}
+
+.funFindingText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--s));
+}
+
+.funFindingText .sectionHead {
+  gap: calc(12 * var(--s));
+}
+
+.posters {
+  display: flex;
+  flex: none;
+  gap: calc(20 * var(--s));
+}
+
+.poster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(6 * var(--s));
+  margin: 0;
+}
+
+.poster figcaption {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.poster img {
+  width: calc(200 * var(--s));
+  height: calc(283 * var(--s));
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ---------- key insights ---------- */
+.insights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(16 * var(--s));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.insight {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  padding: calc(20 * var(--s)) calc(24 * var(--s));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.insight img {
+  align-self: flex-start;
+  width: auto;
+  height: calc(24 * var(--s));
+  min-height: 20px;
+}
+
+.insight p {
+  /* a deliberately tighter block than the prose around it */
+  font: 400 var(--size-body) / 1.28 var(--font-text);
+  color: var(--charcoal);
+}
+
+.insight strong {
+  font-weight: 600;
+}
+
+/* ---------- intentional AI shift ---------- */
+.shift {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(40 * var(--s));
+}
+
+.shiftBefore,
+.shiftAfter {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--s));
+}
+
+.shiftBefore {
+  color: var(--stone);
+}
+
+.shiftAfter {
+  flex: 1;
+  color: var(--charcoal);
+}
+
+.shiftTitle {
+  font: 500 var(--size-body) / 1.28 var(--font-text);
+}
+
+.shiftBody {
+  font: var(--type-label);
+}
+
+.shift .arrow {
+  margin-top: calc(10 * var(--s));
+}
+
+/* ---------- the framework: heading, quote and the ice cream model ---------- */
+.framework,
+.finals,
+.learningsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Figma 435:426 */
+.framework { gap: calc(80 * var(--s)); }
+.finals { gap: calc(48 * var(--s)); }
+/* Figma 513:13765 — the learnings and the matrix read as one block */
+.learningsSection { gap: calc(30 * var(--s)); }
+
+/* the model and the matrix hold their drawn size as the window narrows and only
+   give way once the viewport itself is smaller — they never squash */
+.model {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: min(100% - 40px, 832px);
+  margin-inline: auto;
+}
+
+.modelCard {
+  display: flex;
+  flex-direction: column;
+  container-type: inline-size;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.cardTitle {
+  font: var(--type-graph);
+  letter-spacing: var(--tracking-label);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+.modelBody {
+  --u: calc(1cqw / 7.01);
+
+  position: relative;
+  container-type: inline-size;
+  /* 701 of the card's 782px of content, so it keeps its share as the card scales */
+  width: calc(100cqw * 701 / 782);
+  aspect-ratio: 701 / 460;
+  margin: 0 auto;
+}
+
+.modelImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(242 * var(--u));
+  height: calc(460 * var(--u));
+}
+
+.modelRule {
+  position: absolute;
+  height: 1px;
+  background: #b6b6b6;
+}
+
+.modelRule1 { top: calc(101 * var(--u)); left: calc(231 * var(--u)); width: calc(120 * var(--u)); }
+.modelRule2 { top: calc(206 * var(--u)); left: calc(260 * var(--u)); width: calc(91 * var(--u)); }
+.modelRule3 { top: calc(306 * var(--u)); left: calc(214 * var(--u)); width: calc(136 * var(--u)); }
+
+.modelKey {
+  position: absolute;
+  top: calc(90 * var(--u));
+  left: calc(361 * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: calc(52 * var(--u));
+  width: calc(340 * var(--u));
+  margin: 0;
+}
+
+.modelKey dt {
+  font: 500 calc(18 * var(--u)) / 1.28 var(--font-text);
+  color: var(--charcoal);
+}
+
+.modelKey dd {
+  margin: calc(6 * var(--u)) 0 0;
+  font: 400 calc(16 * var(--u)) / 1.5625 var(--font-text);
+  color: #5f6368;
+}
+
+/* the three parts keep the illustration's own colours */
+.sprinklesKey { color: #7f4591; }
+.scoopKey     { color: #cb4953; }
+.coneKey      { color: #bf4c00; }
+
+.modelCaption {
+  font: var(--type-label);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+/* ---------- the blue band ---------- */
+.deepDives {
+  position: relative;
+  width: 100%;
+}
+
+.waveTop,
+.waveBottom {
+  height: max(40px, calc(80 * var(--s)));
+  fill: var(--water-top);
+}
+
+.deepDivesInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(80 * var(--s));
+  padding: calc(80 * var(--s)) 0;
+  background: var(--water-top);
+}
+
+.deepDive {
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--s));
+}
+
+.frog {
+  position: absolute;
+  top: calc(66 * var(--s));
+  left: 50%;
+  width: calc(141 * var(--s));
+  min-width: 80px;
+  height: auto;
+  margin-left: calc(406 * var(--s));
+  pointer-events: none;
+}
+
+.deepDiveHead {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--s));
+  max-width: calc(680 * var(--s));
+}
+
+.panel {
+  padding: calc(30 * var(--s)) calc(40 * var(--s));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--card-wash);
+  box-shadow: 0 2.6px 3px rgb(0 0 0 / 0.12);
+}
+
+.panelLabel {
+  font: var(--type-graph);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.versions,
+.iterations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(40 * var(--s));
+}
+
+.version,
+.iteration {
+  display: flex;
+  flex-direction: column;
+  gap: calc(24 * var(--s));
+}
+
+.version {
+  flex: 1;
+}
+
+.iteration {
+  width: calc(208 * var(--s));
+}
+
+.version img,
+.iteration img {
+  width: 100%;
+  height: auto;
+}
+
+.optIn {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(40 * var(--s));
+  margin-top: calc(24 * var(--s));
+}
+
+.optInMain,
+.optInAside {
+  display: flex;
+  flex-direction: column;
+  gap: calc(24 * var(--s));
+}
+
+.optInMain { flex: 1; }
+.optInAside { width: calc(269 * var(--s)); }
+
+.labelled {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  margin: 0;
+}
+
+.imageLabel {
+  font: var(--type-label);
+  color: var(--charcoal);
+}
+
+.optInMain img { width: 100%; height: auto; }
+.optInAside img { width: calc(186 * var(--s)); height: auto; }
+
+.plus {
+  align-self: flex-start;
+  margin-top: calc(223 * var(--s));
+  font: 400 calc(28 * var(--s)) / 1 var(--font-text);
+  color: var(--charcoal);
+}
+
+/* ---------- learnings ---------- */
+.learnings {
+  display: flex;
+  flex-direction: column;
+  gap: calc(30 * var(--s));
+}
+
+.learnings > div {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--s));
+}
+
+.matrix {
+  width: min(100% - 40px, 832px);
+  margin-inline: auto;
+}
+
+.thanks {
+  font: var(--type-quote);
+  color: var(--stone);
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 899px) {
+  .meta {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 24px;
+  }
+
+  .diagrams {
+    gap: 32px;
+  }
+
+  .funFinding,
+  .shift,
+  .optIn,
+  .versions,
+  .iterations {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .funFinding {
+    padding: 24px 20px;
+    gap: 24px;
+  }
+
+  .posters {
+    justify-content: center;
+  }
+
+  .poster img {
+    width: min(200px, 40vw);
+    height: auto;
+  }
+
+  .insights {
+    grid-template-columns: 1fr;
+  }
+
+  .shift .arrow,
+  .versions .arrow,
+  .iterations .arrow,
+  .plus {
+    align-self: center;
+    margin: 0;
+    transform: rotate(90deg);
+  }
+
+  .plus {
+    transform: none;
+    font-size: 28px;
+  }
+
+
+  .panel {
+    padding: 24px 20px;
+  }
+
+  .iteration,
+  .optInAside {
+    width: 100%;
+  }
+
+  .optInAside img {
+    width: min(186px, 50%);
+  }
+
+  .frog {
+    width: 96px;
+    margin-left: 0;
+    left: auto;
+    right: 16px;
+    top: 24px;
+  }
+}
+
+/* ---------- below the 680px reading column ---------- */
+@media (max-width: 680px) {
+  /* the model's labelled callouts stack under the illustration */
+  .modelBody {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .modelImage,
+  .modelKey {
+    position: static;
+    width: auto;
+  }
+
+  .modelImage {
+    height: 320px;
+  }
+
+  .modelKey {
+    gap: 20px;
+    width: 100%;
+  }
+
+  .modelKey dt { font: 500 var(--size-body) / 1.28 var(--font-text); }
+  .modelKey dd { margin: 6px 0 0; font: var(--type-label); }
+
+  .modelRule {
+    display: none;
+  }
+}

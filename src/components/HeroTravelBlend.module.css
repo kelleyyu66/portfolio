@@ -1,0 +1,466 @@
+/*
+ * Figma 662:4264. The stage is 1030×635 Figma pixels; --u is one of those
+ * pixels expressed against the container width, so every offset below can be
+ * read straight off the frame and the whole thing scales as one picture.
+ */
+.hero {
+  position: relative;
+  container-type: inline-size;
+  margin-top: calc(4 * var(--s));
+  aspect-ratio: 1030 / 635;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stage {
+  --u: calc(1cqw / 10.3);
+  --loop: 7.74s;
+  --ease-figma: cubic-bezier(0.5, 0, 0.5, 1);
+  --ease-pop: cubic-bezier(0.07, 0.97, 0.58, 1);
+
+  position: absolute;
+  inset: 0;
+  color: #fff;
+}
+
+.stage img {
+  max-width: none;
+}
+
+/* ---------- Gemini prompt (Figma 662:4266, "Group 118") ---------- */
+.prompt {
+  position: absolute;
+  inset: 0;
+  animation: prompt var(--loop) var(--ease-figma) infinite;
+}
+
+.glow {
+  position: absolute;
+  left: calc(38.14 * var(--u));
+  top: calc(-32.93 * var(--u));
+  width: calc(627.883 * var(--u));
+  height: calc(439.102 * var(--u));
+  transform: rotate(-0.74deg);
+}
+
+.titleA,
+.titleB {
+  position: absolute;
+  top: calc(121 * var(--u));
+  display: flex;
+  align-items: center;
+  height: calc(35.067 * var(--u));
+  font: 600 calc(26.974 * var(--u)) / 1.1 var(--font-text);
+  letter-spacing: calc(-0.2697 * var(--u));
+  white-space: nowrap;
+  text-shadow: calc(0.674 * var(--u)) calc(0.674 * var(--u)) calc(4 * var(--u)) rgb(15 7 51 / 0.3);
+}
+
+.titleA {
+  left: calc(219 * var(--u));
+  animation: titleA var(--loop) var(--ease-figma) infinite;
+}
+
+.titleB {
+  left: calc(218.554 * var(--u));
+  opacity: 0;
+  animation: titleB var(--loop) var(--ease-figma) infinite;
+}
+
+.sparkle {
+  position: absolute;
+  left: calc(170 * var(--u));
+  top: calc(121 * var(--u));
+  width: calc(35.067 * var(--u));
+  height: calc(35.067 * var(--u));
+  filter: drop-shadow(calc(0.674 * var(--u)) calc(1.349 * var(--u)) calc(2.697 * var(--u)) rgb(0 0 0 / 0.25));
+  animation: sparkle var(--loop) var(--ease-figma) infinite;
+}
+
+/* the preference lines scroll up one slot at a time (Figma 662:4287) */
+.lines {
+  position: absolute;
+  left: calc(220.1 * var(--u));
+  top: calc(165.4 * var(--u));
+  width: calc(329.086 * var(--u));
+  height: calc(80.395 * var(--u));
+  animation: titleA var(--loop) var(--ease-figma) infinite;
+}
+
+.lines p {
+  position: absolute;
+  left: 0;
+  width: calc(358.083 * var(--u));
+  font: 500 calc(20 * var(--u)) / 1.25 var(--font-text);
+  letter-spacing: calc(-0.4 * var(--u));
+  white-space: nowrap;
+  text-shadow: calc(0.674 * var(--u)) calc(0.674 * var(--u)) calc(3.372 * var(--u)) rgb(0 0 0 / 0.3);
+}
+
+.line1 {
+  top: calc(27.6 * var(--u));
+  animation: line1 var(--loop) var(--ease-figma) infinite;
+}
+
+.line2 {
+  top: calc(27.697 * var(--u));
+  opacity: 0;
+  animation: line2 var(--loop) var(--ease-figma) infinite;
+}
+
+.line3 {
+  top: calc(55.394 * var(--u));
+  opacity: 0;
+  animation: line3 var(--loop) var(--ease-figma) infinite;
+}
+
+/* ---------- the four travellers (Figma 662:4328) ---------- */
+.cluster {
+  position: absolute;
+  left: calc(720.12 * var(--u));
+  top: calc(92 * var(--u));
+  width: calc(196.248 * var(--u));
+  height: calc(196.03 * var(--u));
+  animation: cluster var(--loop) var(--ease-figma) infinite;
+}
+
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(196.031 * var(--u));
+  height: calc(196.031 * var(--u));
+}
+
+.avatar {
+  position: absolute;
+  animation: var(--loop) var(--ease-figma) infinite;
+}
+
+.avatarGlow {
+  position: absolute;
+}
+
+.avatarClip {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatarClip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.josie {
+  left: calc(118.53 * var(--u));
+  top: calc(49.19 * var(--u));
+  width: calc(70.74 * var(--u));
+  height: calc(75.317 * var(--u));
+  animation-name: orbitJosie;
+}
+
+.josie .avatarGlow {
+  left: calc(-35.29 * var(--u));
+  top: calc(-33.08 * var(--u));
+  width: calc(141.024 * var(--u));
+  height: calc(141.024 * var(--u));
+}
+
+.josie .avatarClip {
+  left: calc(4.4 * var(--u));
+  top: calc(8.1 * var(--u));
+  width: calc(60.408 * var(--u));
+  height: calc(60.408 * var(--u));
+}
+
+/* josie's photo is framed a touch larger than its clip and sits on its bottom edge */
+.josie .avatarClip img {
+  position: absolute;
+  left: calc(50% - 1.59 * var(--u));
+  top: calc(50% + 1.52 * var(--u));
+  width: calc(63.585 * var(--u));
+  height: calc(63.585 * var(--u));
+  transform: translate(-50%, -50%);
+  object-position: bottom;
+}
+
+.kelley {
+  left: calc(35.44 * var(--u));
+  top: calc(4.4 * var(--u));
+  width: calc(90.757 * var(--u));
+  height: calc(96.63 * var(--u));
+  animation-name: orbitKelley;
+}
+
+.kelley .avatarGlow {
+  left: calc(-45.27 * var(--u));
+  top: calc(-42.44 * var(--u));
+  width: calc(180.929 * var(--u));
+  height: calc(180.929 * var(--u));
+}
+
+.kelley .avatarClip {
+  left: calc(7.56 * var(--u));
+  top: calc(10.39 * var(--u));
+  width: calc(75.587 * var(--u));
+  height: calc(75.587 * var(--u));
+}
+
+.winnie {
+  left: calc(80.81 * var(--u));
+  top: calc(113.43 * var(--u));
+  width: calc(70.72 * var(--u));
+  height: calc(75.296 * var(--u));
+  animation-name: orbitWinnie;
+}
+
+.winnie .avatarGlow {
+  left: calc(-35.28 * var(--u));
+  top: calc(-33.07 * var(--u));
+  width: calc(140.984 * var(--u));
+  height: calc(140.984 * var(--u));
+}
+
+.winnie .avatarClip {
+  left: calc(5.89 * var(--u));
+  top: calc(8.1 * var(--u));
+  width: calc(58.899 * var(--u));
+  height: calc(58.899 * var(--u));
+}
+
+.rakshit {
+  left: calc(13.63 * var(--u));
+  top: calc(94.57 * var(--u));
+  width: calc(73.011 * var(--u));
+  height: calc(77.735 * var(--u));
+  animation-name: orbitRakshit;
+}
+
+.rakshit .avatarGlow {
+  left: calc(-32.03 * var(--u));
+  top: calc(-29.75 * var(--u));
+  width: calc(136.767 * var(--u));
+  height: calc(136.767 * var(--u));
+}
+
+.rakshit .avatarClip {
+  left: calc(6.06 * var(--u));
+  top: 0;
+  width: calc(60.806 * var(--u));
+  height: calc(60.806 * var(--u));
+}
+
+/* ---------- the stops along the route ---------- */
+.chips {
+  position: absolute;
+  inset: 0;
+  animation: chips var(--loop) var(--ease-figma) infinite;
+}
+
+.chip {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: calc(24.624 * var(--u));
+  height: calc(24.624 * var(--u));
+  border-radius: 50%;
+  background: #fff;
+  box-shadow:
+    0 calc(3.68 * var(--u)) calc(11.039 * var(--u)) calc(3.68 * var(--u)) rgb(60 64 67 / 0.15),
+    0 calc(1.84 * var(--u)) calc(3.68 * var(--u)) rgb(60 64 67 / 0.3);
+  font: 400 calc(12.312 * var(--u)) / 1 var(--font-text);
+  letter-spacing: calc(-0.3694 * var(--u));
+  color: #000;
+  animation: var(--loop) var(--ease-pop) infinite;
+}
+
+.chipPark   { left: calc(237 * var(--u)); top: calc(284 * var(--u)); animation-name: chipPark; }
+.chipBird   { left: calc(300 * var(--u)); top: calc(229 * var(--u)); animation-name: chipBird; }
+.chipBurger { left: calc(387 * var(--u)); top: calc(242 * var(--u)); animation-name: chipBurger; }
+.chipRoo    { left: calc(453 * var(--u)); top: calc(287 * var(--u)); animation-name: chipRoo; font-size: calc(14.364 * var(--u)); }
+.chipKayak  { left: calc(519 * var(--u)); top: calc(186 * var(--u)); animation-name: chipKayak; }
+.chipLeaf   { left: calc(578 * var(--u)); top: calc(239 * var(--u)); animation-name: chipLeaf; }
+.chipDonut  { left: calc(719 * var(--u)); top: calc(200 * var(--u)); animation-name: chipDonut; }
+.chipTaco   { left: calc(761 * var(--u)); top: calc(162 * var(--u)); animation-name: chipTaco; }
+
+/* ---------- the route itself (Figma 662:4604) ---------- */
+.route {
+  position: absolute;
+  left: calc(464.73 * var(--u));
+  top: calc(-96.86 * var(--u));
+  width: calc(97.6893 * var(--u));
+  height: calc(681.947 * var(--u));
+  transform: rotate(74.13deg);
+  animation: route var(--loop) var(--ease-figma) infinite;
+}
+
+/* ---------- the 7.74s timeline ---------- */
+@keyframes prompt {
+  0%, 100%      { opacity: 0; }
+  5.18%, 87.19% { opacity: 1; }
+  92.74%        { opacity: 0; }
+}
+
+@keyframes titleA {
+  0%, 54.22%     { opacity: 1; }
+  59.51%, 100%   { opacity: 0; }
+}
+
+@keyframes sparkle {
+  0%, 85.2%      { opacity: 1; }
+  92.74%, 100%   { opacity: 0; }
+}
+
+@keyframes titleB {
+  0%, 56.84%     { opacity: 0; }
+  63%, 85.27%    { opacity: 1; }
+  92.74%, 100%   { opacity: 0; }
+}
+
+@keyframes line1 {
+  0%, 7.69%      { opacity: 0;   transform: translateY(calc(28 * var(--u))); }
+  15.39%, 23.24% { opacity: 1;   transform: translateY(0); }
+  30.99%, 38.47% { opacity: 0.7; transform: translateY(calc(-28 * var(--u))); }
+  46.41%, 100%   { opacity: 0;   transform: translateY(calc(-56 * var(--u))); }
+}
+
+@keyframes line2 {
+  0%, 23.08%     { opacity: 0;   transform: translateY(calc(27.904 * var(--u))); }
+  30.99%, 38.47% { opacity: 1;   transform: translateY(calc(-0.096 * var(--u))); }
+  46.41%, 100%   { opacity: 0.7; transform: translateY(calc(-28.096 * var(--u))); }
+}
+
+@keyframes line3 {
+  0%, 38.47%     { opacity: 0; transform: translateY(0); }
+  46.48%, 100%   { opacity: 1; transform: translateY(calc(-27.793 * var(--u))); }
+}
+
+@keyframes cluster {
+  0%             { opacity: 0; }
+  5.14%, 54.22%  { opacity: 1; }
+  59.59%, 100%   { opacity: 0; }
+}
+
+@keyframes orbitJosie {
+  0%, 7.69%      { transform: translate(0, 0) scale(1); }
+  15.37%, 23.16% { transform: translate(calc(-36.037 * var(--u)), calc(63.012 * var(--u))) scale(0.873); }
+  30.98%, 38.71% { transform: translate(calc(-102.768 * var(--u)), calc(37.492 * var(--u))) scale(0.965); }
+  46.49%, 100%   { transform: translate(calc(-73.676 * var(--u)), calc(-32.021 * var(--u))) scale(1.294); }
+}
+
+@keyframes orbitKelley {
+  0%, 7.69%      { transform: translate(0, 0) scale(1); }
+  15.43%, 23.23% { transform: translate(calc(73.564 * var(--u)), calc(34.6 * var(--u))) scale(0.828); }
+  30.98%, 38.71% { transform: translate(calc(36.32 * var(--u)), calc(97.498 * var(--u))) scale(0.697); }
+  46.49%, 100%   { transform: translate(calc(-30.09 * var(--u)), calc(72.321 * var(--u))) scale(0.787); }
+}
+
+@keyframes orbitWinnie {
+  0%, 7.69%      { transform: translate(0, 0) scale(1); }
+  15.37%, 23.16% { transform: translate(calc(-65.811 * var(--u)), calc(-26.427 * var(--u))) scale(1.022); }
+  30.98%, 38.71% { transform: translate(calc(-36.619 * var(--u)), calc(-97.446 * var(--u))) scale(1.345); }
+  46.49%, 100%   { transform: translate(calc(37.381 * var(--u)), calc(-63.446 * var(--u))) scale(1.059); }
+}
+
+@keyframes orbitRakshit {
+  0%, 7.69%      { transform: translate(0, 0) scale(1); }
+  15.37%, 23.16% { transform: translate(calc(31.373 * var(--u)), calc(-69.714 * var(--u))) scale(1.278); }
+  30.98%, 38.71% { transform: translate(calc(103.865 * var(--u)), calc(-36.981 * var(--u))) scale(1.041); }
+  46.49%, 100%   { transform: translate(calc(67.135 * var(--u)), calc(23.852 * var(--u))) scale(0.87); }
+}
+
+/* the stops share one exit, so each chip's own track only has to arrive */
+@keyframes chips {
+  0%, 85.27%     { opacity: 1; }
+  92.9%, 100%    { opacity: 0; }
+}
+
+@keyframes chipPark {
+  0%, 57.97%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  60.57%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipBird {
+  0%, 59.59%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  62.02%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipBurger {
+  0%, 63%      { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  65.16%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipRoo {
+  0%, 65.16%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  67.05%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipKayak {
+  0%, 67.05%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  68.82%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipLeaf {
+  0%, 68.82%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  70.96%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipDonut {
+  0%, 70.76%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  72.81%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes chipTaco {
+  0%, 72.81%   { opacity: 0; transform: translateY(calc(12 * var(--u))) rotate(-90deg) scale(0.8); }
+  74.76%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes route {
+  0%, 54.22%     { opacity: 0; }
+  60.57%, 85.34% { opacity: 1; }
+  92.95%, 100%   { opacity: 0; }
+}
+
+/*
+ * Without motion the stage rests on the frame Figma draws statically: Gemini
+ * mid-blend, the group orbiting, the route and its stops already laid in.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .prompt,
+  .titleA,
+  .sparkle,
+  .lines,
+  .line1,
+  .cluster,
+  .chips,
+  .chip,
+  .avatar,
+  .route {
+    animation: none;
+    opacity: 1;
+  }
+
+  .titleB,
+  .line2,
+  .line3 {
+    animation: none;
+    opacity: 0;
+  }
+
+  .avatar {
+    transform: none;
+  }
+
+  .chip {
+    transform: none;
+  }
+}
