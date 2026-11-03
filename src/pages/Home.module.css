@@ -126,6 +126,8 @@
 }
 
 .heading {
+  /* the nav's "work" link anchors here, so leave it some air off the top */
+  scroll-margin-top: max(24px, calc(48 * var(--s)));
   padding-left: calc(16 * var(--s));
   font: var(--type-display-md);
   letter-spacing: var(--tracking-display);
