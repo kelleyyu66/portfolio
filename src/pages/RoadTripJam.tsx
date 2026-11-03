@@ -291,14 +291,20 @@ export default function RoadTripJam() {
               <div className={styles.panel}>
                 <div className={styles.versions}>
                   <div className={styles.version}>
-                    <p className={styles.panelLabel}>Ver 1—Personality quiz</p>
-                    <img src={dd1Ver1} alt="Three quiz screens asking what makes you pull over" width={427} height={297} />
+                    <p className={styles.panelLabel}>Ver 1</p>
+                    <figure className={styles.labelled}>
+                      <figcaption className={styles.imageLabel}>Personality Quiz</figcaption>
+                      <img src={dd1Ver1} alt="Three quiz screens asking what makes you pull over" width={427} height={297} />
+                    </figure>
                     <p className={styles.small}>A participant found the 10-screen quiz too long and the answers too limiting.</p>
                   </div>
                   <Arrow />
                   <div className={styles.version}>
-                    <p className={styles.panelLabel}>Ver 2—Slider quiz</p>
-                    <img src={dd1Ver2} alt="Three screens of preference sliders" width={419} height={290} />
+                    <p className={styles.panelLabel}>Ver 2</p>
+                    <figure className={styles.labelled}>
+                      <figcaption className={styles.imageLabel}>Slider Quiz</figcaption>
+                      <img src={dd1Ver2} alt="Three screens of preference sliders" width={419} height={290} />
+                    </figure>
                     <p className={styles.small}>Sliders added nuance, but still required too much effort.</p>
                   </div>
                 </div>
@@ -348,7 +354,7 @@ export default function RoadTripJam() {
                 </p>
               </div>
 
-              <div className={styles.panel}>
+              <div className={`${styles.panel} ${styles.panelSnug}`}>
                 <div className={styles.iterations}>
                   <div className={styles.iteration}>
                     <p className={styles.panelLabel}>01 — Initial</p>

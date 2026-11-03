@@ -113,9 +113,9 @@
 .callout {
   display: flex;
   flex-direction: column;
-  gap: calc(12 * var(--s));
+  gap: calc(4 * var(--s));
   padding: calc(16 * var(--s));
-  border: 1px solid var(--ember-deep);
+  border: 1px solid var(--amber-rule);
   border-radius: 12px;
   background: var(--amber-wash);
 }
@@ -124,7 +124,7 @@
   font: var(--type-eyebrow-sm);
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
-  color: var(--ember-deep);
+  color: var(--amber-ink);
 }
 
 .quote {
@@ -378,8 +378,8 @@
 /* Figma 435:426 */
 .framework { gap: calc(80 * var(--s)); }
 .finals { gap: calc(48 * var(--s)); }
-/* Figma 513:13765 — the learnings and the matrix read as one block */
-.learningsSection { gap: calc(30 * var(--s)); }
+/* Figma 574:7165 — the matrix sits a full section gap below the learnings */
+.learningsSection { gap: var(--gap); }
 
 /* the model and the matrix hold their drawn size as the window narrows and only
    give way once the viewport itself is smaller — they never squash */
@@ -517,11 +517,16 @@
 }
 
 .panel {
-  padding: calc(30 * var(--s)) calc(40 * var(--s));
+  padding: calc(40 * var(--s));
   border: 1px solid var(--border);
   border-radius: 18px;
   background: var(--card-wash);
   box-shadow: 0 2.6px 3px rgb(0 0 0 / 0.12);
+}
+
+/* Figma 633:3426 — the iterations panel alone is 30 deep rather than 40 */
+.panelSnug {
+  padding-block: calc(30 * var(--s));
 }
 
 .panelLabel {
@@ -534,9 +539,21 @@
 .versions,
 .iterations {
   display: flex;
-  align-items: center;
+  /* the columns start on one line however long each caption runs */
+  align-items: stretch;
   justify-content: center;
   gap: calc(40 * var(--s));
+}
+
+.versions > .arrow,
+.iterations > .arrow {
+  align-self: center;
+}
+
+/* three columns and two arrows sitting on 948px of panel: the leftover air
+   divides itself rather than being spelled out */
+.iterations {
+  justify-content: space-between;
 }
 
 .version,
@@ -551,7 +568,7 @@
 }
 
 .iteration {
-  width: calc(208 * var(--s));
+  width: calc(200 * var(--s));
 }
 
 .version img,
@@ -563,7 +580,7 @@
 .optIn {
   display: flex;
   align-items: flex-start;
-  gap: calc(40 * var(--s));
+  gap: calc(83 * var(--s));
   margin-top: calc(24 * var(--s));
 }
 
@@ -575,7 +592,7 @@
 }
 
 .optInMain { flex: 1; }
-.optInAside { width: calc(269 * var(--s)); }
+.optInAside { width: calc(182 * var(--s)); }
 
 .labelled {
   display: flex;
@@ -590,7 +607,7 @@
 }
 
 .optInMain img { width: 100%; height: auto; }
-.optInAside img { width: calc(186 * var(--s)); height: auto; }
+.optInAside img { width: 100%; height: auto; }
 
 .plus {
   align-self: flex-start;
@@ -640,6 +657,10 @@
   .iterations {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .optIn {
+    gap: 24px;
   }
 
   .funFinding {

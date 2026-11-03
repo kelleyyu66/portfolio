@@ -136,24 +136,28 @@ export default function IceCreamStack() {
           // which is what lets the pieces pin one after another and release together
           <Fragment key={row.key}>
             <div className={`${styles.rail} ${styles[`rail${i + 1}`]}`} ref={(el) => void (railRefs.current[i] = el)}>
-              <img
-                className={`${styles.piece} ${styles[row.pieceClass]}`}
-                ref={i === 0 ? coneRef : undefined}
-                src={row.piece}
-                alt=""
-              />
-              {/* one caption for the whole stack, cross-fading as each piece lands */}
-              {i === 0 && (
-                <p className={styles.caption} aria-live="polite">
-                  {rows.map((candidate, j) => (
-                    <span key={candidate.key} className={styles.captionLine} aria-hidden={j !== active} data-on={j === active}>
-                      {candidate.caption[0]}
-                      <br />
-                      {candidate.caption[1]}
-                    </span>
-                ))}
-              </p>
-            )}
+              {/* one pinned box per rail, all the same size, so the finished cone
+                  and its caption release together */}
+              <div className={styles.pin}>
+                <img
+                  className={`${styles.piece} ${styles[row.pieceClass]}`}
+                  ref={i === 0 ? coneRef : undefined}
+                  src={row.piece}
+                  alt=""
+                />
+                {/* one caption for the whole stack, cross-fading as each piece lands */}
+                {i === 0 && (
+                  <p className={styles.caption} aria-live="polite">
+                    {rows.map((candidate, j) => (
+                      <span key={candidate.key} className={styles.captionLine} aria-hidden={j !== active} data-on={j === active}>
+                        {candidate.caption[0]}
+                        <br />
+                        {candidate.caption[1]}
+                      </span>
+                    ))}
+                  </p>
+                )}
+              </div>
             {/* one column: every piece keeps its own caption instead */}
             <p className={styles.captionStacked}>
               {row.caption[0]}

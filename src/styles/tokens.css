@@ -29,7 +29,9 @@
   --green-deep:  #456B27;   /* insight icons */
   --stone:       #74746F;   /* quiet captions */
   --border:      #E7E4DF;
-  --amber-wash:  #FFF4E2;   /* "intentional AI" callouts */
+  --amber-wash:  #FFF6EA;   /* "intentional AI" callouts */
+  --amber-rule:  #F0A868;   /* their edge — ember-deep goes muddy at 1px */
+  --amber-ink:   #B8500B;   /* their label; 4.7:1 on the wash */
   --amber-chip:  #FFF6EA;   /* matrix chips we didn't pursue */
   --chip-green:  #DDE8B9;   /* matrix chips we pursued */
   --sky-wash:    #E8F3FF;   /* panel behind a phone screen */

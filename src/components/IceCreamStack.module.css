@@ -42,33 +42,46 @@
 .body3 { grid-row: 3; }
 
 /* ---------- the stack ---------- */
-.piece {
+/*
+ * Every rail pins the same box — same top, same height, same bottom edge — so
+ * all three pieces and the caption let go on one scroll line and the finished
+ * cone leaves as one drawing instead of the scoop sliding down over it.
+ * 259.5 is the drawing itself (53.5 + the cone's 182) plus the caption's 24.
+ */
+.pin {
   position: sticky;
+  top: var(--pin);
+  height: calc(259.5 * var(--u));
+}
+
+.piece {
+  position: absolute;
   display: block;
   height: auto;
 }
 
 /* offsets from the shared drawing: scoop and sprinkles share an origin, the cone
-   hangs 53.5 below it, so pinning them at these tops rebuilds the whole cone */
+   hangs 53.5 below it, so placing them at these tops rebuilds the whole cone */
 .cone {
-  top: calc(var(--pin) + 53.5 * var(--u));
+  top: calc(53.5 * var(--u));
+  left: calc(38 * var(--u));
   width: calc(120 * var(--u));
-  margin: calc(53.5 * var(--u)) 0 0 calc(38 * var(--u));
 }
 
 .scoop,
 .sprinkles {
-  top: var(--pin);
+  top: 0;
+  left: calc(28 * var(--u));
   width: calc(140 * var(--u));
-  margin-left: calc(28 * var(--u));
 }
 
 /* ---------- caption ---------- */
 .caption {
-  position: sticky;
-  top: calc(var(--pin) + 259.5 * var(--u));
+  position: absolute;
+  top: calc(259.5 * var(--u));
+  left: 0;
+  right: 0;
   display: grid;
-  margin-top: calc(24 * var(--u));
   font: var(--type-label);
   line-height: 1.5625;
   color: var(--stone);
@@ -145,6 +158,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  /* the wrapper steps out of the way; each piece sits in the rail's own column */
+  .pin {
+    display: contents;
   }
 
   .piece {
