@@ -13,12 +13,16 @@ export type CaseBlock =
 export type Project = {
   slug: string
   company: string
-  /** optional company logo for the card chip */
+  /** company mark shown beside the title on the home card */
   logo?: string
-  tags: string
+  tags: string[]
   title: string
+  /** the shorter name the home card goes by */
+  cardTitle: string
   /** card thumbnail; without one the card shows the grey block from the design */
   image?: string
+  /** a component stands in for the thumbnail — the case study's own hero, live */
+  cardMedia?: 'travel-blend'
   /** card image proportions, from the Figma grid (width / height) */
   imageAspect: string
   /** one or two sentences for the home page card */
@@ -33,7 +37,9 @@ export type Project = {
 }
 
 import googleMaps from '../assets/Logo_GoogleMaps.png'
-import roadTripJamCard from '../assets/rtj/card-travel-blend.webp'
+
+/* Figma 689:546 — every card carries the same four on the home page for now */
+const tags = ['Product Design', 'AI-Powered Experiences', 'Interaction Design', 'UX Research']
 
 // Placeholder copy doubles as writing prompts. Replace it project by project.
 const placeholderStudy: Pick<Project, 'outcome' | 'meta' | 'highlights' | 'heroImage' | 'blocks'> = {
@@ -110,44 +116,35 @@ export const featuredProjects: Project[] = [
     slug: 'finding-magic-on-the-road',
     company: 'Google Maps',
     logo: googleMaps,
-    tags: 'Product Design, AI, Mobile',
+    tags,
     title: 'Making Road Trips Magical with Google Maps',
-    image: roadTripJamCard,
-    imageAspect: '603 / 438',
-    description:
-      'Integrating Gemini into Google Maps for a collaborative road trip experience.',
+    cardTitle: 'Google Maps Road Trip Jam',
+    // the card runs the case study's own hero rather than a still of it
+    cardMedia: 'travel-blend',
+    imageAspect: '1235 / 658',
+    description: 'Turning Maps and Gemini into a collaborative road trip companion.',
     ...placeholderStudy,
   },
   {
     slug: 'collaborative-road-trips',
     company: 'Google Maps',
     logo: googleMaps,
-    tags: 'Branding, Marketing, Tags',
+    tags,
     title: 'Designing for Collaborative Road Trips in Google Maps',
-    imageAspect: '603 / 342',
-    description: 'Project description',
+    cardTitle: 'Placeholder',
+    imageAspect: '1235 / 658',
+    description: 'placeholder',
     ...placeholderStudy,
   },
   {
     slug: 'collaborative-road-trips-two',
     company: 'Google Maps',
     logo: googleMaps,
-    tags: 'Branding, Marketing, Tags',
+    tags,
     title: 'Designing for Collaborative Road Trips in Google Maps',
-    imageAspect: '603 / 371',
-    description:
-      'Project description Project description Project description Project description Project description Project description Project description Project description Project description',
-    ...placeholderStudy,
-  },
-  {
-    slug: 'collaborative-road-trips-three',
-    company: 'Google Maps',
-    logo: googleMaps,
-    tags: 'Branding, Marketing, Tags',
-    title: 'Designing for Collaborative Road Trips in Google Maps',
-    imageAspect: '603 / 417',
-    description:
-      'Project description Project description Project description Project description Project description Project description Project description Project description Project description',
+    cardTitle: 'Placeholder',
+    imageAspect: '1235 / 658',
+    description: 'placeholder',
     ...placeholderStudy,
   },
 ]

@@ -6,7 +6,6 @@
 .hero {
   position: relative;
   container-type: inline-size;
-  margin-top: calc(4 * var(--s));
   aspect-ratio: 1030 / 635;
   border-radius: 12px;
   overflow: hidden;
@@ -434,6 +433,18 @@
  * Without motion the stage rests on the frame Figma draws statically: Gemini
  * mid-blend, the group orbiting, the route and its stops already laid in.
  */
+/*
+ * Nothing runs until the hero is on screen. Two class names, so this outranks
+ * the `animation` shorthands above whatever order they land in.
+ */
+.hero .stage * {
+  animation-play-state: paused;
+}
+
+.hero[data-playing='true'] .stage * {
+  animation-play-state: running;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .prompt,
   .titleA,

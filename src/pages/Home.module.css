@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: max(24px, calc(38 * var(--s)));
+  gap: max(16px, calc(24 * var(--s)));
   padding: max(56px, calc(224 * var(--s))) 20px max(64px, calc(131 * var(--s)));
   text-align: center;
 }
@@ -18,10 +18,12 @@
   flex-direction: column;
   align-items: center;
   gap: max(12px, calc(20 * var(--s)));
+  /* Figma 397:273 — the hero text runs on a 979px measure */
+  max-width: calc(979 * var(--s));
 }
 
 .title {
-  font: var(--type-display-lg);
+  font: var(--type-display-sm);
   letter-spacing: var(--tracking-display);
   color: var(--heading);
 }
@@ -134,30 +136,12 @@
   color: var(--deep-teal);
 }
 
-/* Figma 397:294 — two 603px columns, 29px apart, cards 52px apart. */
+/* Figma 397:295 — one column of cards the full 1235px, 52px apart. */
 .projects {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: calc(29 * var(--s));
-  margin-top: max(32px, calc(53 * var(--s)));
-}
-
-.column {
   display: flex;
   flex-direction: column;
-  gap: calc(52 * var(--s));
-}
-
-@media (max-width: 1023px) {
-  .projects {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  /* drop the column wrappers so the cards fall back into their original order */
-  .column {
-    display: contents;
-  }
+  gap: max(40px, calc(52 * var(--s)));
+  margin-top: max(32px, calc(53 * var(--s)));
 }
 
 @media (max-width: 767px) {

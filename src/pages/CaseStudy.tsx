@@ -29,7 +29,7 @@ export default function CaseStudy() {
     <article>
       <header className={`${styles.container} ${styles.hero}`}>
         <p className={styles.eyebrow}>
-          {project.company} · {project.tags}
+          {project.company} · {project.tags.join(', ')}
         </p>
         <h1 className={styles.title}>{project.title}</h1>
         <p className={styles.outcome}>{project.outcome}</p>

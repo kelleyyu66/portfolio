@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import photo from '../assets/rtj/hero-photo.webp'
 import glow from '../assets/rtj/hero-glow.svg'
 import sparkle from '../assets/rtj/hero-sparkle.webp'
@@ -23,16 +24,39 @@ import styles from './HeroTravelBlend.module.css'
  *             preference lines cycle
  *   4.2–4.9s  the avatars hand off to the route, the stops pop in
  *   6.6–7.2s  everything fades out before the loop restarts
+ *
+ * It holds at the first frame until it is on screen, so the home page's card
+ * starts the loop when the reader reaches it rather than halfway through.
  */
 export default function HeroTravelBlend() {
+  const hero = useRef<HTMLDivElement>(null)
+  const [playing, setPlaying] = useState(false)
+
+  useEffect(() => {
+    const el = hero.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        setPlaying(true)
+        observer.disconnect()
+      },
+      { threshold: 0.25 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className={styles.hero}>
+    <div className={styles.hero} ref={hero} data-playing={playing}>
       <img
         className={styles.photo}
         src={photo}
         alt="A car on a winding road along a mountain ridge above the clouds"
         width={1030}
         height={635}
+        loading="lazy"
       />
 
       <div className={styles.stage} aria-hidden="true">

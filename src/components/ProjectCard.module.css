@@ -1,12 +1,13 @@
 /*
- * Figma 397:296 — a 603px-wide card: image block (height varies per project),
- * 20px gap, title, 10px gap, tags. White text straight on the pond.
+ * Figma 627:2195 — a card the full 1235px of the column: the work at
+ * 1235 × 658, 24px of air, then the company mark, the name and its tags on one
+ * line, and a sentence under them. White type straight on the pond.
  */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: calc(20 * var(--s));
+  gap: calc(24 * var(--s));
   color: #fff;
 }
 
@@ -18,56 +19,85 @@
 }
 
 .image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: #D9D9D9;
+  background: #d9d9d9;
 }
 
-/* company chip, 27px down and 29px in from the image's top-right corner */
-.chip {
+.scrim {
   position: absolute;
-  top: calc(27 * var(--s));
-  right: calc(29 * var(--s));
-  display: flex;
-  align-items: center;
-  gap: calc(10 * var(--s));
-  padding: calc(8 * var(--s)) calc(12 * var(--s));
-  border-radius: 60px;
-  background: rgba(255, 255, 255, 0.6);
-  font: var(--type-body);
-  color: #373737;
-  white-space: nowrap;
+  inset: 0;
+  background: rgb(0 0 0 / 0.1);
+  pointer-events: none;
 }
 
-/* the 32px square logo is centre-cropped to 24×32, as in the design */
-.chipLogo {
+/* ---------- the row under the work ---------- */
+.meta {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(16 * var(--s));
+}
+
+/* the square mark is centre-cropped to 30 × 40, as in the design */
+.logo {
   flex-shrink: 0;
   display: block;
-  width: calc(24 * var(--s));
-  height: calc(32 * var(--s));
+  width: calc(30 * var(--s));
+  min-width: 22px;
+  aspect-ratio: 30 / 40;
   overflow: clip;
 }
 
-.chipLogo img {
-  width: calc(32 * var(--s));
-  height: calc(32 * var(--s));
-  margin-left: calc(-4 * var(--s));
+.logo img {
+  width: 133.33%;
+  height: 100%;
+  margin-left: -16.67%;
+  object-fit: contain;
 }
 
 .text {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: calc(10 * var(--s));
 }
 
+.headline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(16 * var(--s));
+}
+
 .title {
   margin: 0;
-  font: var(--type-title);
+  font: italic 600 max(22px, calc(36 * var(--s))) / 1.1 var(--font-display);
 }
 
 .tags {
-  font: var(--type-label);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: calc(6 * var(--s));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  padding: calc(6 * var(--s)) calc(12 * var(--s));
+  border-radius: 80px;
+  background: rgb(255 255 255 / 0.1);
+  font: var(--type-micro);
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+}
+
+.description {
+  font: 400 var(--size-body) / 1.6 var(--font-text);
 }
 
 /* the title link covers the whole card, so the card is one click target */
@@ -93,20 +123,33 @@
   text-underline-offset: 4px;
 }
 
+/* the name and its tags stop sharing a line long before the column does */
+@media (max-width: 1023px) {
+  .headline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(12 * var(--s));
+  }
+
+  .tags {
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 767px) {
-  .chip {
-    top: 12px;
-    right: 12px;
+  .card {
+    gap: 16px;
   }
 
-  .chipLogo {
-    width: 18px;
-    height: 24px;
+  .meta {
+    gap: 12px;
   }
 
-  .chipLogo img {
-    width: 24px;
-    height: 24px;
-    margin-left: -3px;
+  .text {
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 5px 10px;
   }
 }

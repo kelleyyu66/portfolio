@@ -10,10 +10,6 @@ import lilyStem from '../assets/Lily_Stem.png'
 import styles from './Home.module.css'
 
 export default function Home() {
-  // the Figma grid stacks projects down two columns: even left, odd right
-  const ordered = featuredProjects.map((project, order) => ({ project, order }))
-  const columns = [ordered.filter((_, i) => i % 2 === 0), ordered.filter((_, i) => i % 2 === 1)]
-
   return (
     <>
       <section className={styles.hero}>
@@ -46,12 +42,8 @@ export default function Home() {
             featured projects
           </h2>
           <div className={styles.projects}>
-            {columns.map((column, i) => (
-              <div key={i} className={styles.column}>
-                {column.map(({ project, order }) => (
-                  <ProjectCard key={project.slug} project={project} order={order} />
-                ))}
-              </div>
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </div>
