@@ -4,6 +4,8 @@ import HeroTravelBlend from '../components/HeroTravelBlend'
 import IceCreamStack from '../components/IceCreamStack'
 import IdeaMatrix from '../components/IdeaMatrix'
 import Waterline from '../components/Waterline'
+import ReadingProgress from '../components/ReadingProgress'
+import type { ProgressSection } from '../components/ReadingProgress'
 import navEveryday from '../assets/rtj/nav-everyday.webp'
 import navRoadTrip from '../assets/rtj/nav-roadtrip.webp'
 import problemCar from '../assets/rtj/problem-car.webp'
@@ -25,6 +27,15 @@ import dd2Three from '../assets/rtj/dd2-03.webp'
 import googleTeam from '../assets/rtj/google-team.webp'
 import styles from './RoadTripJam.module.css'
 
+/* the five beats the bottom rail steps through, in page order */
+const SECTIONS: ProgressSection[] = [
+  { id: 'background', label: 'Background' },
+  { id: 'research', label: 'Research' },
+  { id: 'final-designs', label: 'Final designs' },
+  { id: 'design-process', label: 'Design process' },
+  { id: 'reflections', label: 'Reflections' },
+]
+
 // Figma 380:43. One-off page: the shared CaseStudy template still serves the
 // other three projects.
 export default function RoadTripJam() {
@@ -38,7 +49,7 @@ export default function RoadTripJam() {
 
   return (
     <article className={styles.page}>
-      <header className={`${styles.wide} ${styles.hero}`}>
+      <header id="background" className={`${styles.wide} ${styles.hero} ${styles.anchor}`}>
         <div className={styles.heroText}>
           <h1 className={styles.title}>Making Road Trips Magical with Google Maps</h1>
           <p className={styles.subtitle}>
@@ -130,7 +141,7 @@ export default function RoadTripJam() {
           </figure>
         </section>
 
-        <section className={`${styles.wide} ${styles.funFinding}`}>
+        <section id="research" className={`${styles.wide} ${styles.funFinding} ${styles.anchor}`}>
           <div className={styles.funFindingText}>
             <SectionHead eyebrow="Fun finding" heading="Recruiting Gen Z required thinking like Gen Z" level="h3" />
             <p className={styles.small}>
@@ -267,7 +278,7 @@ export default function RoadTripJam() {
           </div>
         </section>
 
-        <section className={styles.finals}>
+        <section id="final-designs" className={`${styles.finals} ${styles.anchor}`}>
           <div className={styles.col}>
             <SectionHead eyebrow="Final designs" heading="Road Trip Jam: Planning and Discovering Together" />
           </div>
@@ -275,7 +286,7 @@ export default function RoadTripJam() {
         </section>
 
         {/* ---------- the blue band ---------- */}
-        <section className={styles.deepDives} aria-label="Design deep dives">
+        <section id="design-process" className={`${styles.deepDives} ${styles.anchor}`} aria-label="Design deep dives">
           <Waterline className={styles.waveTop} />
           <div className={styles.deepDivesInner}>
             <img className={styles.frog} src={frogPond} alt="" width={141} height={157} />
@@ -380,7 +391,7 @@ export default function RoadTripJam() {
           <Waterline className={styles.waveBottom} flip />
         </section>
 
-        <section className={`${styles.col} ${styles.block}`}>
+        <section id="reflections" className={`${styles.col} ${styles.block} ${styles.anchor}`}>
           <SectionHead eyebrow="Impact & reception" heading="Google loved the fresh perspective" />
           <p className={styles.copy}>
             Road Trip Jam was met with very positive feedback from our Google Maps partners. They recognized its
@@ -433,6 +444,8 @@ export default function RoadTripJam() {
 
         <p className={`${styles.col} ${styles.thanks}`}>Thank you for reading!</p>
       </div>
+
+      <ReadingProgress sections={SECTIONS} />
     </article>
   )
 }

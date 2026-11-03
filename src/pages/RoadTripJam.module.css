@@ -17,6 +17,11 @@
   padding-bottom: var(--gap);
 }
 
+/* the bottom rail scrolls to these, so leave each a little air off the top */
+.anchor {
+  scroll-margin-top: max(16px, calc(32 * var(--s)));
+}
+
 .col  { width: var(--col);  margin-inline: auto; }
 .wide { width: var(--wide); margin-inline: auto; }
 
