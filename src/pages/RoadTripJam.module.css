@@ -180,9 +180,10 @@
   color: var(--charcoal);
 }
 
+/* the line under the title runs the full width of the header rather than
+   breaking early, so it reads as one sentence. Body 1, 20px. */
 .subtitle {
-  max-width: calc(640 * var(--s));
-  font: 400 var(--size-section) / 1.2 var(--font-text);
+  font: 400 var(--size-title) / 1.4 var(--font-text);
   color: var(--charcoal);
 }
 
@@ -524,8 +525,8 @@
 .panel {
   padding: calc(40 * var(--s));
   border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--card-wash);
+  border-radius: 12px;
+  background: var(--card-blue);
   box-shadow: 0 2.6px 3px rgb(0 0 0 / 0.12);
 }
 
@@ -756,5 +757,54 @@
 
   .modelRule {
     display: none;
+  }
+}
+
+/* ---------- the next case study ---------- */
+.nextProject {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(12 * var(--s));
+  margin-top: calc(40 * var(--s));
+  text-align: center;
+}
+
+.nextLabel {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.nextLink {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(14 * var(--s));
+  font: var(--type-section);
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.nextLink:hover,
+.nextLink:focus-visible {
+  color: var(--ember);
+}
+
+.nextLink svg {
+  flex: none;
+  width: calc(28 * var(--s));
+  min-width: 20px;
+  height: auto;
+  transition: transform 0.18s ease;
+}
+
+.nextLink:hover svg {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextLink,
+  .nextLink svg {
+    transition: none;
   }
 }

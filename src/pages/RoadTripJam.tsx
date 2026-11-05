@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import HeroTravelBlend from '../components/HeroTravelBlend'
 import IceCreamStack from '../components/IceCreamStack'
 import IdeaMatrix from '../components/IdeaMatrix'
@@ -443,6 +444,14 @@ export default function RoadTripJam() {
         </section>
 
         <p className={`${styles.col} ${styles.thanks}`}>Thank you for reading!</p>
+
+        <section className={`${styles.col} ${styles.nextProject}`}>
+          <p className={styles.nextLabel}>Check out the next project:</p>
+          <Link className={styles.nextLink} to="/work/playbook">
+            Meeting Investors Where They Already Work
+            <Arrow />
+          </Link>
+        </section>
       </div>
 
       <ReadingProgress sections={SECTIONS} />

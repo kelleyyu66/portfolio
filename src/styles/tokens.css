@@ -37,6 +37,7 @@
   --sky-wash:    #E8F3FF;   /* panel behind a phone screen */
   --sage-wash:   #F2F4EC;   /* "fun finding" panel */
   --card-wash:   rgb(255 255 255 / 0.8);   /* cards on the blue band — the water reads through */
+  --card-blue:   #CADFF3;                  /* the deep dive panels, a tone of the water */
 
   /* text */
   --ink:         #545454;
