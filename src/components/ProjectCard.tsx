@@ -20,22 +20,23 @@ export default function ProjectCard({ project }: Props) {
         style={project.cardMedia ? undefined : { aspectRatio: project.imageAspect }}
       >
         {project.cardMedia === 'travel-blend' ? (
+          // it brings its own tint with it
           <HeroTravelBlend />
         ) : project.image ? (
-          <img className={styles.image} src={project.image} alt="" loading="lazy" />
+          <>
+            <img className={styles.image} src={project.image} alt="" loading="lazy" />
+            <span className={styles.scrim} aria-hidden="true" />
+          </>
         ) : (
           <div className={styles.image} />
         )}
-        {/* Figma 671:33196 — a tenth of black over the whole frame */}
-        <span className={styles.scrim} aria-hidden="true" />
       </div>
 
       <div className={styles.meta}>
-        {project.logo && (
-          <span className={styles.logo}>
-            <img src={project.logo} alt="" width={40} height={40} loading="lazy" />
-          </span>
-        )}
+        {/* the slot is kept even without a mark, so every title starts on one line */}
+        <span className={styles.logo}>
+          {project.logo && <img src={project.logo} alt="" width={40} height={40} loading="lazy" />}
+        </span>
         <div className={styles.text}>
           <div className={styles.headline}>
             <h3 className={styles.title}>

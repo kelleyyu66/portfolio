@@ -26,10 +26,11 @@
   background: #d9d9d9;
 }
 
+/* the same black a hero carries, for a card that shows a still instead */
 .scrim {
   position: absolute;
   inset: 0;
-  background: rgb(0 0 0 / 0.1);
+  background: rgb(0 0 0 / 0.08);
   pointer-events: none;
 }
 

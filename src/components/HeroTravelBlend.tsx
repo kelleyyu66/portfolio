@@ -58,6 +58,8 @@ export default function HeroTravelBlend() {
         height={635}
         loading="lazy"
       />
+      {/* Figma 662:4265 — a flat black over the photo, under the composition */}
+      <span className={styles.tint} aria-hidden="true" />
 
       <div className={styles.stage} aria-hidden="true">
         <div className={styles.prompt}>

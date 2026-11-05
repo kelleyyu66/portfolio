@@ -17,6 +17,13 @@
   object-fit: cover;
 }
 
+/* Figma 662:4265 — it sits on the photo, never on the composition above it */
+.tint {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 0.08);
+}
+
 .stage {
   --u: calc(1cqw / 10.3);
   --loop: 7.74s;
