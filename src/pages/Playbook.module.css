@@ -1,0 +1,174 @@
+/*
+ * What this case study needs on top of the shared chrome. Everything else
+ * comes from styles/caseStudy.module.css.
+ */
+
+/*
+ * The hero: two before-and-afters stacked, under one pair of labels. It sits
+ * outside the header rather than inside it, so it can run wider than the 1030
+ * the writing is set on.
+ */
+.heroArt {
+  display: flex;
+  flex-direction: column;
+  gap: calc(28 * var(--s));
+  margin-top: calc(36 * var(--s));
+}
+
+/*
+ * A pair of labels over a before-and-after. The columns are measured off the
+ * artwork itself — where each screen starts and ends — so a label lands over
+ * the middle of the thing it names rather than over a half of the page.
+ */
+.pair {
+  display: grid;
+  grid-template-columns: var(--lead) var(--left) var(--mid) var(--right) auto;
+  /* it is a centred flex item where it is used, so it has to claim the
+     measure itself — the columns are percentages of it */
+  width: 100%;
+  margin: 0;
+}
+
+.pair span {
+  grid-column: 2;
+  text-align: center;
+}
+
+.pair span:last-child {
+  grid-column: 4;
+}
+
+/* the hero stacks: screens at 0–51.7% and 55.1–100% */
+.heroPair {
+  --lead: 0%;
+  --left: 51.7%;
+  --mid: 3.4%;
+  --right: 44.9%;
+}
+
+/* the competitive landscape: screens at 14–47.9% and 50.2–84% */
+.landscapePair {
+  --lead: 14.03%;
+  --left: 33.87%;
+  --mid: 2.26%;
+  --right: 33.87%;
+}
+
+.heroShot {
+  width: 100%;
+  height: auto;
+}
+
+/*
+ * Prose held to the reading measure inside a section drawn on the wide one, and
+ * centred on it — so it lines up with the sections written on --col rather than
+ * with the imagery underneath. The 544 floor is the same one --col keeps, or
+ * the column collapses on a phone; the wide measure has already paid the gutter.
+ */
+.textCol {
+  width: min(100%, max(544px, calc(680 * var(--s))));
+  margin-inline: auto;
+}
+
+/* the three lines under "what I did" */
+.contributions {
+  display: flex;
+  flex-direction: column;
+  gap: calc(6 * var(--s));
+  margin: 0;
+  padding-left: 1.1em;
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+.contributions li::marker {
+  color: var(--amber-ink);
+}
+
+/*
+ * An exploration. The writing is held to the reading column and centred on the
+ * page; the artwork sits straight on the background on a wider measure, with no
+ * card around it.
+ */
+.exploration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* the same 80 that runs between sections, so a big piece of artwork gets as
+     much air as a section break does */
+  gap: var(--gap);
+  width: 100%;
+}
+
+/* a section whose writing and artwork want the same air an exploration has */
+.spaced {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(16 * var(--s));
+  width: var(--xwide);
+  margin: 0;
+}
+
+/* a wordmark or a drawing, which has no edge to round */
+.flat {
+  border-radius: 0;
+}
+
+/* the start of a new beat rather than the next iteration of the last one */
+.beat {
+  margin-top: calc(40 * var(--s));
+}
+
+/* artwork a step down from the full measure */
+.large {
+  width: var(--wide);
+}
+
+/* artwork that would overwhelm the page at the full measure */
+.mid {
+  width: var(--card);
+}
+
+/* artwork held to the width of the writing */
+.small {
+  width: var(--col);
+}
+
+/* a recording that stands on its own rather than filling the measure */
+.narrow {
+  width: min(100% - 40px, calc(620 * var(--s)));
+}
+
+.artLabel,
+.pair span {
+  font: var(--type-graph);
+  color: var(--stone);
+  text-align: center;
+}
+
+/* the note under a piece of artwork, back on the reading measure */
+.artNote {
+  width: min(100%, max(544px, calc(680 * var(--s))));
+  margin: calc(8 * var(--s)) auto 0;
+  font: var(--type-label);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+.artNote strong {
+  font-weight: 600;
+}
+
+@media (max-width: 899px) {
+  .exploration {
+    gap: 48px;
+  }
+}

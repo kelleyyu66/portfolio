@@ -37,6 +37,7 @@ export type Project = {
 }
 
 import googleMaps from '../assets/Logo_GoogleMaps.png'
+import playbookMark from '../assets/playbook/logo-playbook.webp'
 
 /* Figma 689:546 — every card carries the same four on the home page for now */
 const tags = ['Product Design', 'AI-Powered Experiences', 'Interaction Design', 'UX Research']
@@ -126,14 +127,14 @@ export const featuredProjects: Project[] = [
     ...placeholderStudy,
   },
   {
-    slug: 'collaborative-road-trips',
-    company: 'Google Maps',
-    logo: googleMaps,
-    tags,
-    title: 'Designing for Collaborative Road Trips in Google Maps',
-    cardTitle: 'Placeholder',
+    slug: 'playbook',
+    company: 'Playbook',
+    logo: playbookMark,
+    tags: ['Product Design', 'UX Research', 'AI', 'Early-stage startup'],
+    title: 'Meeting Investors Where They Already Work',
+    cardTitle: 'Playbook — Meeting Investors Where They Work',
     imageAspect: '1235 / 658',
-    description: 'placeholder',
+    description: 'Designing an AI tool to help investors get deals done faster.',
     ...placeholderStudy,
   },
   {
