@@ -1,0 +1,301 @@
+/*
+ * What this case study needs on top of the shared chrome. Everything else
+ * comes from styles/caseStudy.module.css. It follows Playbook closely — the
+ * explorations, the artwork measures, the notes under the artwork — so the two
+ * migrated case studies read in one voice.
+ */
+
+/* four fields; contributions and impact are the two that run long */
+.meta {
+  grid-template-columns: 190fr 150fr 290fr 310fr;
+  /* four fields rather than Playbook's four short ones, so the gap gives way
+     first and the writing keeps its lines */
+  column-gap: max(4px, calc(28 * var(--s)));
+}
+
+/* the one link in the header: it has to read as a link without shouting */
+.metaLink {
+  color: var(--charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--ember);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.metaLink:hover,
+.metaLink:focus-visible {
+  color: var(--ember-deep);
+  text-decoration-color: var(--ember-deep);
+}
+
+/*
+ * The hero: one plate of the finished site, on the wide measure, outside the
+ * header so it can run past the 1030 the writing is set on.
+ */
+.heroArt {
+  margin-top: calc(36 * var(--s));
+}
+
+.heroShot {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+/*
+ * Prose held to the reading measure inside a section drawn on the wide one, and
+ * centred on it — so it lines up with the sections written on --col rather than
+ * with the imagery underneath.
+ */
+.textCol {
+  width: min(100%, max(544px, calc(680 * var(--s))));
+  margin-inline: auto;
+}
+
+/* the plain lists the old page used: what they wanted, what the competitors had */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(6 * var(--s));
+  margin: 0;
+  padding-left: 1.1em;
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+.list li::marker {
+  color: var(--amber-ink);
+}
+
+/*
+ * An exploration. The writing is held to the reading column and centred on the
+ * page; the artwork sits straight on the background on a wider measure.
+ */
+.exploration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+  width: 100%;
+}
+
+/* artwork that belongs to the heading right above it rather than standing apart */
+.closeArt {
+  gap: calc(28 * var(--s));
+}
+
+/* a section whose writing and artwork want the same air an exploration has */
+.spaced {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(16 * var(--s));
+  width: var(--xwide);
+  margin: 0;
+}
+
+/* a diagram or a wordmark, which has no edge to round */
+.flat {
+  border-radius: 0;
+}
+
+/* artwork a step down from the full measure */
+.large {
+  width: var(--wide);
+}
+
+/* artwork that would overwhelm the page at the full measure */
+.mid {
+  width: var(--card);
+}
+
+/* artwork held to the measure the writing is set on */
+.reading {
+  width: var(--col);
+}
+
+.artLabel {
+  font: var(--type-graph);
+  color: var(--stone);
+  text-align: center;
+}
+
+/* the note under a piece of artwork, back on the reading measure */
+.artNote {
+  width: min(100%, max(544px, calc(680 * var(--s))));
+  margin: calc(8 * var(--s)) auto 0;
+  font: var(--type-label);
+  color: var(--charcoal);
+  text-align: center;
+}
+
+.artNote strong {
+  font-weight: 600;
+}
+
+/* ---------- the three people the site had to speak to ---------- */
+.personas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(24 * var(--s));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.persona {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  padding: calc(24 * var(--s));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.persona img {
+  width: calc(64 * var(--s));
+  min-width: 48px;
+  height: auto;
+}
+
+.persona h3 {
+  margin-top: calc(4 * var(--s));
+}
+
+/* the second line is the goal rather than the description, so it sits quieter */
+.persona p:last-child {
+  color: var(--ink);
+}
+
+/* ---------- the challenge, set as a statement ----------
+   It takes the amber treatment the callouts use elsewhere in the portfolio,
+   so the one line the whole project answers to is the warmest thing on the
+   page. */
+.challenge {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  padding: calc(28 * var(--s)) calc(32 * var(--s));
+  border: 1px solid var(--amber-rule);
+  border-radius: 12px;
+  background: var(--amber-wash);
+}
+
+.challengeText {
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+.challengeLabel {
+  font: var(--type-eyebrow-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--amber-ink);
+}
+
+/* ---------- low, mid and high fidelity, side by side ---------- */
+.fidelity {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(24 * var(--s));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fidelityFigure {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--s));
+  margin: 0;
+}
+
+/*
+ * Each page runs to several thousand pixels, so the column shows the top of it
+ * and fades out rather than making the reader scroll three of them. Clicking
+ * opens the whole page in the lightbox.
+ */
+.fidelityFrame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: calc(420 * var(--s));
+  min-height: 260px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.fidelityFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fidelityFrame::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: calc(90 * var(--s));
+  background: linear-gradient(to bottom, transparent, var(--sand));
+  pointer-events: none;
+}
+
+/* ---------- next steps ---------- */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--s));
+  margin: 0;
+  padding-left: 1.3em;
+  font: var(--type-body);
+  color: var(--charcoal);
+}
+
+.steps li::marker {
+  font-weight: 600;
+  color: var(--amber-ink);
+}
+
+.steps strong {
+  font-weight: 600;
+}
+
+@media (max-width: 899px) {
+  .meta {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .exploration,
+  .spaced {
+    gap: 48px;
+  }
+
+  .closeArt {
+    gap: 24px;
+  }
+
+  .personas,
+  .fidelity {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge {
+    padding: 24px 20px;
+  }
+
+  /* the reading measure already pays the gutter; artwork on it should too */
+  .reading {
+    width: min(100% - 40px, var(--col));
+  }
+
+  .fidelityFrame {
+    height: 320px;
+  }
+}

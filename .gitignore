@@ -11,9 +11,11 @@ dist
 # Assets/ holds the raw .mov screen recordings (53 MB) that are already encoded
 # into the mp4s under src/assets/rtj/, plus PNGs duplicated in src/assets/.
 # References/ is moodboard and competitor-research imagery that isn't ours to publish.
-# Assets_Playbook/ is 190 MB of source PNGs, .mov recordings and old screenshots
-# for the Playbook case study; web-ready versions belong under src/assets/.
+# Assets_Playbook/ and Assets_Recoolit/ are source PNGs, .mov recordings and old
+# screenshots for those case studies (190 MB and 46 MB); web-ready versions
+# belong under src/assets/.
 /Assets/
 /Assets_Playbook/
+/Assets_Recoolit/
 /References/
 /Illustrations/

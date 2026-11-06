@@ -10,17 +10,23 @@ import lilyStem from '../assets/Lily_Stem.png'
 import styles from './Home.module.css'
 
 export default function Home() {
+  // the two-column grid stacks projects down the columns: even left, odd right
+  const columns = [
+    featuredProjects.filter((_, i) => i % 2 === 0),
+    featuredProjects.filter((_, i) => i % 2 === 1),
+  ]
+
   return (
     <>
       <section className={styles.hero}>
         <div className={styles.intro}>
           <h1 className={styles.title}>hi! I’m kelley. </h1>
           <p className={styles.tagline}>
-            I bring clarity to complex problems and turn creative ideas into thoughtful experiences.
+            I'm a product designer who brings clarity to complex problems and turns creative ideas into thoughtful experiences.
           </p>
         </div>
         <p className={styles.status}>
-          looking for mission-driven opportunities in nyc <span aria-hidden="true">✨</span>
+          seeking product design roles with mission-driven teams in NYC <span aria-hidden="true">✨</span>
         </p>
       </section>
 
@@ -42,8 +48,12 @@ export default function Home() {
             featured projects
           </h2>
           <div className={styles.projects}>
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+            {columns.map((column, i) => (
+              <div key={i} className={styles.column}>
+                {column.map((project) => (
+                  <ProjectCard key={project.slug} project={project} />
+                ))}
+              </div>
             ))}
           </div>
         </div>

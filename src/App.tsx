@@ -5,6 +5,7 @@ import Placeholder from './pages/Placeholder'
 import CaseStudy from './pages/CaseStudy'
 import RoadTripJam from './pages/RoadTripJam'
 import Playbook from './pages/Playbook'
+import Recoolit from './pages/Recoolit'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         {/* written pages; the rest still use the template */}
         <Route path="work/finding-magic-on-the-road" element={<RoadTripJam />} />
         <Route path="work/playbook" element={<Playbook />} />
+        <Route path="work/recoolit" element={<Recoolit />} />
         <Route path="work/:slug" element={<CaseStudy />} />
         <Route path="playground" element={<Placeholder title="playground" />} />
         <Route path="about" element={<Placeholder title="about" />} />

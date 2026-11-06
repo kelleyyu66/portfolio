@@ -12,7 +12,10 @@ export type CaseBlock =
 
 export type Project = {
   slug: string
+  /** the short name the nav's work menu goes by */
   company: string
+  /** how the company signs the home card, where it has a longer name */
+  companyName?: string
   /** company mark shown beside the title on the home card */
   logo?: string
   tags: string[]
@@ -21,8 +24,8 @@ export type Project = {
   cardTitle: string
   /** card thumbnail; without one the card shows the grey block from the design */
   image?: string
-  /** a component stands in for the thumbnail — the case study's own hero, live */
-  cardMedia?: 'travel-blend'
+  /** artwork stands in for the thumbnail — a live hero, or a looping recording */
+  cardMedia?: 'travel-blend' | 'playbook'
   /** card image proportions, from the Figma grid (width / height) */
   imageAspect: string
   /** one or two sentences for the home page card */
@@ -38,9 +41,11 @@ export type Project = {
 
 import googleMaps from '../assets/Logo_GoogleMaps.png'
 import playbookMark from '../assets/playbook/logo-playbook.webp'
+import recoolitMark from '../assets/recoolit/logo-recoolit.webp'
+import recoolitHero from '../assets/recoolit/hero.webp'
 
 /* Figma 689:546 — every card carries the same four on the home page for now */
-const tags = ['Product Design', 'AI-Powered Experiences', 'Interaction Design', 'UX Research']
+const tags = ['Product Design', 'Mobile', 'AI', 'Interaction Design']
 
 // Placeholder copy doubles as writing prompts. Replace it project by project.
 const placeholderStudy: Pick<Project, 'outcome' | 'meta' | 'highlights' | 'heroImage' | 'blocks'> = {
@@ -119,33 +124,40 @@ export const featuredProjects: Project[] = [
     logo: googleMaps,
     tags,
     title: 'Making Road Trips Magical with Google Maps',
-    cardTitle: 'Google Maps Road Trip Jam',
-    // the card runs the case study's own hero rather than a still of it
+    cardTitle: 'Road Trip Jam',
+    // the card runs the case study's own hero rather than a still of it,
+    // cropped a little off each side to sit closer to square
     cardMedia: 'travel-blend',
-    imageAspect: '1235 / 658',
-    description: 'Turning Maps and Gemini into a collaborative road trip companion.',
+    imageAspect: '3 / 2',
+    description: 'Helping friend groups collaborate on the road with Gemini.',
     ...placeholderStudy,
   },
   {
     slug: 'playbook',
     company: 'Playbook',
+    companyName: 'Playbook M&A',
     logo: playbookMark,
     tags: ['Product Design', 'UX Research', 'AI', 'Early-stage startup'],
-    title: 'Meeting Investors Where They Already Work',
-    cardTitle: 'Playbook — Meeting Investors Where They Work',
-    imageAspect: '1235 / 658',
+    title: 'Meeting Investors Where They Work',
+    cardTitle: 'Meeting Investors Where They Are',
+    // the card loops the hero animation while it is on screen, trimmed a
+    // little off the top and bottom of the recording's own proportions
+    cardMedia: 'playbook',
+    imageAspect: '3 / 2',
     description: 'Designing an AI tool to help investors get deals done faster.',
     ...placeholderStudy,
   },
   {
-    slug: 'collaborative-road-trips-two',
-    company: 'Google Maps',
-    logo: googleMaps,
-    tags,
-    title: 'Designing for Collaborative Road Trips in Google Maps',
-    cardTitle: 'Placeholder',
-    imageAspect: '1235 / 658',
-    description: 'placeholder',
+    slug: 'recoolit',
+    company: 'Recoolit',
+    logo: recoolitMark,
+    tags: ['Web Design', 'UX Writing', 'Branding', 'Climate Tech'],
+    title: 'Designing a compelling narrative around an overlooked climate problem.',
+    cardTitle: 'Recoolit Redesign',
+    image: recoolitHero,
+    imageAspect: '3 / 2',
+    description:
+      'Designing a compelling narrative around an overlooked climate problem.',
     ...placeholderStudy,
   },
 ]

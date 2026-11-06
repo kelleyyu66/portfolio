@@ -137,11 +137,30 @@
 }
 
 /* Figma 397:295 — one column of cards the full 1235px, 52px apart. */
+/* Figma 397:294 — two 603px columns, 29px apart, cards 52px apart. */
 .projects {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(29 * var(--s));
+  margin-top: max(32px, calc(53 * var(--s)));
+}
+
+.column {
   display: flex;
   flex-direction: column;
   gap: max(40px, calc(52 * var(--s)));
-  margin-top: max(32px, calc(53 * var(--s)));
+}
+
+@media (max-width: 1023px) {
+  .projects {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* drop the column wrappers so the cards fall back into their original order */
+  .column {
+    display: contents;
+  }
 }
 
 @media (max-width: 767px) {

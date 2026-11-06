@@ -47,8 +47,75 @@
   color: var(--ember-deep);
 }
 
+/*
+ * The case studies, hanging off "work". The item keeps a little padding below
+ * it so the pointer can cross the gap into the menu without leaving the item,
+ * and the menu is only in the tab order while it is open.
+ */
+.hasMenu {
+  position: relative;
+  padding-bottom: calc(10 * var(--s));
+  margin-bottom: calc(-10 * var(--s));
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: calc(2 * var(--s));
+  min-width: calc(168 * var(--s));
+  margin: 0;
+  padding: calc(10 * var(--s));
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--sand);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.1);
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -4px);
+  transition: opacity 140ms ease-out, transform 140ms ease-out, visibility 140ms;
+}
+
+.menu[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.menuLink {
+  display: block;
+  padding: calc(8 * var(--s)) calc(12 * var(--s));
+  border-radius: 8px;
+  font: var(--type-label);
+  white-space: nowrap;
+  color: var(--nav-ink);
+  transition: background-color 120ms ease-out, color 120ms ease-out;
+}
+
+.menuLink:hover,
+.menuLink:focus-visible,
+.menuLink[aria-current='page'] {
+  background: var(--paper);
+  color: var(--ember-deep);
+}
+
 @media (max-width: 480px) {
   .links {
     gap: 16px;
+  }
+
+  /* no room to hang a menu off a link at this width */
+  .menu {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    transition: none;
   }
 }

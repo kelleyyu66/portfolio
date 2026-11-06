@@ -1,5 +1,7 @@
+import { useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router'
 import logo from '../assets/Logo.png'
+import { featuredProjects } from '../data/projects'
 import styles from './Nav.module.css'
 
 const RESUME_URL =
@@ -24,8 +26,34 @@ const links: NavItem[] = [
   { label: 'resume', to: RESUME_URL, external: true },
 ]
 
+/*
+ * The case studies, by the company they were done for — the list comes from the
+ * projects themselves so the menu can never drift from what is on the site.
+ */
+const work = featuredProjects.map((project) => ({
+  label: project.company,
+  to: `/work/${project.slug}`,
+}))
+
 export default function Nav() {
   const { pathname } = useLocation()
+  const [openWork, setOpenWork] = useState(false)
+  const closing = useRef(0)
+
+  /*
+   * The menu follows the pointer and the keyboard both. Leaving is given a beat
+   * so the diagonal from "work" down to the first case study doesn't close it
+   * mid-journey, and focus moving between the items inside cancels the close.
+   */
+  const open = () => {
+    window.clearTimeout(closing.current)
+    setOpenWork(true)
+  }
+
+  const close = (delay = 0) => {
+    window.clearTimeout(closing.current)
+    closing.current = window.setTimeout(() => setOpenWork(false), delay)
+  }
 
   return (
     <header className={styles.nav}>
@@ -34,23 +62,68 @@ export default function Nav() {
       </Link>
       <nav aria-label="Main">
         <ul className={styles.links}>
-          {links.map(({ label, to, external, isCurrent }) => (
-            <li key={label}>
-              {external ? (
-                <a className={styles.link} href={to} target="_blank" rel="noreferrer">
-                  {label}
-                </a>
-              ) : (
-                <Link
-                  className={styles.link}
-                  to={to}
-                  aria-current={(isCurrent ?? ((p) => p === to))(pathname) ? 'page' : undefined}
+          {links.map(({ label, to, external, isCurrent }) => {
+            const current = !external && (isCurrent ?? ((p) => p === to))(pathname)
+
+            if (label === 'work') {
+              return (
+                <li
+                  key={label}
+                  className={styles.hasMenu}
+                  onMouseEnter={open}
+                  onMouseLeave={() => close(120)}
+                  onFocus={open}
+                  onBlur={() => close(0)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') close(0)
+                  }}
                 >
-                  {label}
-                </Link>
-              )}
-            </li>
-          ))}
+                  <Link
+                    className={styles.link}
+                    to={to}
+                    aria-current={current ? 'page' : undefined}
+                    aria-expanded={openWork}
+                    aria-haspopup="true"
+                  >
+                    {label}
+                  </Link>
+                  <ul className={styles.menu} data-open={openWork || undefined}>
+                    {work.map((project) => (
+                      <li key={project.to}>
+                        <Link
+                          className={styles.menuLink}
+                          to={project.to}
+                          tabIndex={openWork ? undefined : -1}
+                          onClick={() => close(0)}
+                          aria-current={pathname === project.to ? 'page' : undefined}
+                        >
+                          {project.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )
+            }
+
+            return (
+              <li key={label}>
+                {external ? (
+                  <a className={styles.link} href={to} target="_blank" rel="noreferrer">
+                    {label}
+                  </a>
+                ) : (
+                  <Link
+                    className={styles.link}
+                    to={to}
+                    aria-current={current ? 'page' : undefined}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            )
+          })}
         </ul>
       </nav>
     </header>

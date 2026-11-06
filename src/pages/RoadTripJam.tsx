@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { Link } from 'react-router'
 import HeroTravelBlend from '../components/HeroTravelBlend'
 import IceCreamStack from '../components/IceCreamStack'
 import IdeaMatrix from '../components/IdeaMatrix'
 import Waterline from '../components/Waterline'
 import ReadingProgress from '../components/ReadingProgress'
+import { NextProject } from '../components/CaseStudyParts'
+import playbookHeroPoster from '../assets/playbook/hero-animation-poster.webp'
 import type { ProgressSection } from '../components/ReadingProgress'
 import navEveryday from '../assets/rtj/nav-everyday.webp'
 import navRoadTrip from '../assets/rtj/nav-roadtrip.webp'
@@ -84,7 +85,7 @@ export default function RoadTripJam() {
             </dd>
           </div>
           <div>
-            <dt>Tools</dt>
+            <dt>My Contributions</dt>
             <dd>Figma, Cursor, Gemini</dd>
           </div>
         </dl>
@@ -94,9 +95,7 @@ export default function RoadTripJam() {
       <div className={styles.sections}>
         <section className={`${styles.col} ${styles.intro}`}>
           <p className={styles.lede}>
-            In a world competing for our attention, road trips invite us to slow down, be present, and connect
-            with each other and the world around us. I was excited to partner with Google Maps to integrate
-            Gemini into the platform to explore an untapped opportunity: road trips.
+            In partnership with Google Maps, our team explored how Gemini could help Gen Z friends coordinate road trips—an untapped opportunity for the company.
           </p>
           <Callout label="Guiding AI principle">
             Use AI where it adds meaningful value to road trips, with care for people and the planet.
@@ -209,12 +208,12 @@ export default function RoadTripJam() {
             <div className={styles.shift}>
               <div className={styles.shiftBefore}>
                 <p className={styles.shiftTitle}>AI creates the magic</p>
-                <p className={styles.shiftBody}>Finds hidden gems, suggest plans</p>
+                <p className={styles.shiftBody}>Starts with AI-generated plans</p>
               </div>
               <Arrow />
               <div className={styles.shiftAfter}>
                 <p className={styles.shiftTitle}>AI makes room for magic</p>
-                <p className={styles.shiftBody}>Helps friends find common ground, reduces cognitive load</p>
+                <p className={styles.shiftBody}>Starts with the group's preferences</p>
               </div>
             </div>
           </Callout>
@@ -305,7 +304,7 @@ export default function RoadTripJam() {
                   <div className={styles.version}>
                     <p className={styles.panelLabel}>Ver 1</p>
                     <figure className={styles.labelled}>
-                      <figcaption className={styles.imageLabel}>Personality Quiz</figcaption>
+                      <figcaption className={styles.imageLabel}>Initial Quiz</figcaption>
                       <img src={dd1Ver1} alt="Three quiz screens asking what makes you pull over" width={427} height={297} />
                     </figure>
                     <p className={styles.small}>A participant found the 10-screen quiz too long and the answers too limiting.</p>
@@ -314,7 +313,7 @@ export default function RoadTripJam() {
                   <div className={styles.version}>
                     <p className={styles.panelLabel}>Ver 2</p>
                     <figure className={styles.labelled}>
-                      <figcaption className={styles.imageLabel}>Slider Quiz</figcaption>
+                      <figcaption className={styles.imageLabel}>Revized Sliders</figcaption>
                       <img src={dd1Ver2} alt="Three screens of preference sliders" width={419} height={290} />
                     </figure>
                     <p className={styles.small}>Sliders added nuance, but still required too much effort.</p>
@@ -323,11 +322,11 @@ export default function RoadTripJam() {
               </div>
 
               <div className={styles.panel}>
-                <p className={styles.panelLabel}>Final—Opt-in personalization</p>
+                <p className={styles.panelLabel}>Final Designs</p>
                 <div className={styles.optIn}>
                   <div className={styles.optInMain}>
                     <figure className={styles.labelled}>
-                      <figcaption className={styles.imageLabel}>Automatic Travel Blend</figcaption>
+                      <figcaption className={styles.imageLabel}>Automatic Opt-In Personalization</figcaption>
                       <img src={dd1Final} alt="Three screens building a Travel Blend for the group" width={587} height={414} />
                     </figure>
                     <p className={styles.small}>
@@ -393,7 +392,7 @@ export default function RoadTripJam() {
         </section>
 
         <section id="reflections" className={`${styles.col} ${styles.block} ${styles.anchor}`}>
-          <SectionHead eyebrow="Impact & reception" heading="Google loved the fresh perspective" />
+          <SectionHead eyebrow="Reception" heading="A fresh perspective for Google Maps" />
           <p className={styles.copy}>
             Road Trip Jam was met with very positive feedback from our Google Maps partners. They recognized its
             potential to reimagine an established product and saw opportunities for the experience to resonate
@@ -445,13 +444,12 @@ export default function RoadTripJam() {
 
         <p className={`${styles.col} ${styles.thanks}`}>Thank you for reading!</p>
 
-        <section className={`${styles.col} ${styles.nextProject}`}>
-          <p className={styles.nextLabel}>Check out the next project:</p>
-          <Link className={styles.nextLink} to="/work/playbook">
-            Meeting Investors Where They Already Work
-            <Arrow />
-          </Link>
-        </section>
+        <NextProject
+          className={styles.wide}
+          to="/work/playbook"
+          title="Meeting Investors Where They Already Work"
+          image={playbookHeroPoster}
+        />
       </div>
 
       <ReadingProgress sections={SECTIONS} />

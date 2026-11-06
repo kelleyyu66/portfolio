@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import type { ReactNode } from 'react'
+import { Link } from 'react-router'
 import styles from '../styles/caseStudy.module.css'
 
 /*
@@ -161,6 +162,36 @@ export function LoopVideo({
       preload="none"
       aria-label={label}
     />
+  )
+}
+
+/*
+ * The hand-off at the foot of a case study: a small plate of the next project's
+ * hero beside its title, so the link shows what it is pointing at rather than
+ * only naming it.
+ */
+export function NextProject({
+  to,
+  title,
+  image,
+  className = '',
+}: {
+  to: string
+  title: string
+  image: string
+  className?: string
+}) {
+  return (
+    <section className={`${styles.nextProject} ${className}`}>
+      <p className={styles.nextLabel}>Check out the next project:</p>
+      <Link className={styles.nextLink} to={to}>
+        <span className={styles.nextThumb}>
+          <img src={image} alt="" loading="lazy" />
+        </span>
+        <span className={styles.nextTitle}>{title}</span>
+        <Arrow />
+      </Link>
+    </section>
   )
 }
 

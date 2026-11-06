@@ -1,13 +1,23 @@
 /*
- * Figma 627:2195 — a card the full 1235px of the column: the work at
- * 1235 × 658, 24px of air, then the company mark, the name and its tags on one
- * line, and a sentence under them. White type straight on the pond.
+ * Figma 627:2195 — a card the full 1235px of the column: the work, then the
+ * company signing it, the name of the project and a sentence about it.
+ *
+ * The whole thing sits in a pane of white laid over the pond. It is kept light
+ * on purpose: white type is what the card is set in, and every point of white
+ * added underneath lifts the ground towards the type and costs contrast. The
+ * water behind the cards is rgb(60 105 164), which carries white at 5.6:1.
+ * Measured off the rendered page: 0.08 leaves 4.58:1, 0.1 drops to 4.43 and
+ * 0.15 to 4.07. So 0.08 is the most white the type can afford, not a taste.
  */
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: calc(24 * var(--s));
+  gap: calc(20 * var(--s));
+  padding: calc(16 * var(--s));
+  border: 1px solid rgb(255 255 255 / 0.16);
+  border-radius: 18px;
+  background: rgb(255 255 255 / 0.08);
   color: #fff;
 }
 
@@ -18,12 +28,33 @@
   overflow: clip;
 }
 
+/*
+ * The artwork fills the frame rather than sizing it: the frame holds the
+ * proportions from the design, and a still or a recording of its own ratio is
+ * cropped into them instead of stretching the card to its own shape.
+ */
 .image {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   background: #d9d9d9;
+}
+
+/*
+ * The live hero is drawn at 1030 x 635 and its composition is laid out against
+ * its own width, so it can't simply be squashed into a squarer frame. Instead
+ * it is held at its drawn proportions, run wider than the frame, and centred —
+ * the card crops the sides rather than redrawing the picture.
+ */
+.heroCrop {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: calc(100% * 2060 / 1905);
+  transform: translateX(-50%);
 }
 
 /* the same black a hero carries, for a card that shows a still instead */
@@ -34,67 +65,43 @@
   pointer-events: none;
 }
 
-/* ---------- the row under the work ---------- */
-.meta {
+/* ---------- the writing under the work ---------- */
+/* the mark and the company name, 8px apart, on the card's first line */
+.company {
   display: flex;
-  align-items: flex-start;
-  gap: calc(16 * var(--s));
+  align-items: center;
+  gap: 8px;
+  font: 500 var(--size-body) / 1.348 var(--font-text);
 }
 
-/* the square mark is centre-cropped to 30 × 40, as in the design */
+/*
+ * The company mark. Every mark is square, so the slot is square too and the
+ * picture is contained inside it — nothing is cropped off the sides, whatever
+ * proportions a logo turns up in.
+ */
 .logo {
   flex-shrink: 0;
   display: block;
-  width: calc(30 * var(--s));
+  width: calc(28 * var(--s));
   min-width: 22px;
-  aspect-ratio: 30 / 40;
-  overflow: clip;
+  aspect-ratio: 1;
 }
 
 .logo img {
-  width: 133.33%;
+  width: 100%;
   height: 100%;
-  margin-left: -16.67%;
   object-fit: contain;
 }
 
 .text {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: calc(10 * var(--s));
 }
 
-.headline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: calc(16 * var(--s));
-}
-
 .title {
   margin: 0;
   font: italic 600 max(22px, calc(36 * var(--s))) / 1.1 var(--font-display);
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: calc(6 * var(--s));
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tag {
-  padding: calc(6 * var(--s)) calc(12 * var(--s));
-  border-radius: 80px;
-  background: rgb(255 255 255 / 0.1);
-  font: var(--type-micro);
-  letter-spacing: var(--tracking-label);
-  white-space: nowrap;
 }
 
 .description {
@@ -107,7 +114,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  border-radius: 12px;
+  border-radius: 18px;
 }
 
 .link:focus-visible {
@@ -124,33 +131,18 @@
   text-underline-offset: 4px;
 }
 
-/* the name and its tags stop sharing a line long before the column does */
-@media (max-width: 1023px) {
-  .headline {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: calc(12 * var(--s));
-  }
-
-  .tags {
-    justify-content: flex-start;
-  }
-}
-
 @media (max-width: 767px) {
   .card {
     gap: 16px;
-  }
-
-  .meta {
-    gap: 12px;
+    padding: 12px;
+    border-radius: 14px;
   }
 
   .text {
     gap: 8px;
   }
 
-  .tag {
-    padding: 5px 10px;
+  .link::after {
+    border-radius: 14px;
   }
 }

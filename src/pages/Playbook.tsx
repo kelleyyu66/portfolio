@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import Lightbox from '../components/Lightbox'
 import ReadingProgress from '../components/ReadingProgress'
 import type { ProgressSection } from '../components/ReadingProgress'
-import { Callout, LoopVideo, PullQuote, SectionHead } from '../components/CaseStudyParts'
+import { Callout, LoopVideo, NextProject, PullQuote, SectionHead } from '../components/CaseStudyParts'
 import journeyMap from '../assets/playbook/journey-map.webp'
 import matrix from '../assets/playbook/prioritization-matrix.webp'
 import heroHome from '../assets/playbook/hero-home.webp'
@@ -16,6 +16,7 @@ import privateWorkspacePoster from '../assets/playbook/private-workspace-poster.
 import competitiveLandscape from '../assets/playbook/competitive-landscape.webp'
 import logoBeforeAfter from '../assets/playbook/logo-before-after.webp'
 import finalScreens from '../assets/playbook/final-screens.webp'
+import recoolitHero from '../assets/recoolit/hero.webp'
 import base from '../styles/caseStudy.module.css'
 import styles from './Playbook.module.css'
 
@@ -52,7 +53,7 @@ export default function Playbook() {
     <article className={base.page}>
       <header id="background" className={`${base.wide} ${base.hero} ${base.anchor}`}>
         <div className={base.heroText}>
-          <h1 className={base.title}>Meeting Investors Where They Already Work</h1>
+          <h1 className={base.title}>Meeting Investors Where They Already Work with Playbook</h1>
           <p className={base.subtitle}>
             Designing an AI tool to help investors get deals done faster.
           </p>
@@ -111,13 +112,13 @@ export default function Playbook() {
           </p>
           <Callout label="What I did">
             <ul className={styles.contributions}>
-              <li>Ran user research to validate the problem statement</li>
+              <li>Ran research that identified workflow and adoption barriers</li>
               <li>
-                Helped shape the product vision and value proposition that set Playbook apart from
+                Helped shape product direction that set Playbook apart from
                 its competitors
               </li>
               <li>
-                Redesigned the web app interface to look more modern and have a more intuitive experience
+                Redesigned the web app's information architecture and interface
               </li>
             </ul>
           </Callout>
@@ -156,21 +157,17 @@ export default function Playbook() {
           <ul className={base.insights}>
             <li className={base.insight}>
               <p>
-                <strong>75%</strong> of users preferred the tools they already had. However
-                inefficient, those tools were so engrained in their workflow that they were
-                reluctant to switch.
+                <strong>Established workflows:</strong> Participants relied on familiar tools like Excel and were reluctant to switch. 
               </p>
             </li>
             <li className={base.insight}>
               <p>
-                <strong>62%</strong> had privacy concerns about the AI document reader. Privacy is
-                paramount in the deal world, and the AI was prone to inconsistency.
+                <strong>Privacy concerns:%</strong> Participants questioned how AI would handle sensitive deal documents.
               </p>
             </li>
             <li className={base.insight}>
               <p>
-                <strong>67%</strong> thought the website looked clunky and hard to scan — and too
-                close to Pitchbook, our biggest competitor.
+                <strong>Information overload:</strong> Participants described the interface as cluttered and hard to scan.
               </p>
             </li>
           </ul>
@@ -186,11 +183,11 @@ export default function Playbook() {
           <div className={`${base.col} ${base.block}`}>
             <SectionHead
               eyebrow="Design exploration #1"
-              heading="How might we integrate the platform into the tools users already have, like Excel?"
+              heading="Integrating the workflow into Excel"
             />
             <p className={base.copy}>
-              Our hypothesis was that users needed something to automate their Excel models and
-              save them hours. Two iterations proved the hypothesis right and the shape wrong.
+              Our hypothesis was that users needed something to automate their Excel models that would
+              save them hours. Testing showed that users wanted the automation, but preferred to stay in Excel.
             </p>
           </div>
 
@@ -236,7 +233,7 @@ export default function Playbook() {
           <div className={`${base.col} ${base.block}`}>
             <SectionHead
               eyebrow="Design exploration #2"
-              heading="How might we use design to answer privacy concerns about AI?"
+              heading="Addressing trust in Document AI"
             />
             <p className={base.copy}>
               While we could have changed the underlying technology to use on-premise software or
@@ -259,10 +256,10 @@ export default function Playbook() {
 
           <div className={base.col}>
             <p className={base.copy}>
-              The private workspace raised use of Document AI by <strong>8%</strong>. However, users
-              were still wary of an AI chat that stored data in the cloud, and ChatGPT and Copilot
-              had shipped stronger document readers in the meantime. We dropped the feature and
-              moved AI elsewhere — though the dark-mode-as-private signal is an idea I’d use again.
+              The private workspace saw an increase in feature users. However, users
+              were still wary of an AI chat that stored data in the cloud, and competitors
+              had shipped stronger document readers in the meantime, so we dropped the feature and
+              moved AI elsewhere.
             </p>
           </div>
         </section>
@@ -271,7 +268,7 @@ export default function Playbook() {
           <div className={`${base.col} ${base.block}`}>
             <SectionHead
               eyebrow="Design exploration #3"
-              heading="How might we make a UI that is easy to scan and doesn’t look like the competition?"
+              heading="Making company data easier to scan"
             />
             <p className={base.copy}>
               I started with gradient backgrounds and a glassmorphism effect to suit the AI
@@ -359,6 +356,13 @@ export default function Playbook() {
         </section>
 
         <p className={`${base.col} ${base.thanks}`}>Thank you for reading!</p>
+
+        <NextProject
+          className={base.wide}
+          to="/work/recoolit"
+          title="Designing a Compelling Narrative with Recoolit"
+          image={recoolitHero}
+        />
       </div>
 
       <ReadingProgress sections={SECTIONS} />

@@ -391,6 +391,83 @@
   color: var(--stone);
 }
 
+/* ---------- the hand-off to the next case study ---------- */
+.nextProject {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(16 * var(--s));
+  margin-top: calc(40 * var(--s));
+  text-align: center;
+}
+
+.nextLabel {
+  font: var(--type-label);
+  color: var(--ink);
+}
+
+.nextLink {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(16 * var(--s));
+  font: var(--type-section);
+  color: var(--charcoal);
+  text-align: left;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+/* a plate of the next project's hero, cropped to the card's proportions */
+.nextThumb {
+  flex: none;
+  display: block;
+  width: calc(104 * var(--s));
+  min-width: 72px;
+  aspect-ratio: 3 / 2;
+  overflow: clip;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.14);
+}
+
+.nextThumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nextLink:hover,
+.nextLink:focus-visible {
+  color: var(--ember);
+}
+
+.nextLink svg {
+  flex: none;
+  width: calc(28 * var(--s));
+  min-width: 20px;
+  height: auto;
+  transition: transform 0.18s ease;
+}
+
+.nextLink:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 899px) {
+  .nextLink {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nextLink,
+  .nextLink svg {
+    transition: none;
+  }
+}
+
 /* ---------- small screens ---------- */
 @media (max-width: 899px) {
   .meta {
