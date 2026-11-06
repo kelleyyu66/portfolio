@@ -83,7 +83,7 @@ const FIDELITY = [
 export default function Recoolit() {
   useEffect(() => {
     const previous = document.title
-    document.title = 'Designing a Compelling Narrative with Recoolit — Kelley Yu'
+    document.title = 'Crafting a Compelling Narrative with Recoolit — Kelley Yu'
     /* like Playbook, this case study reads on plain white rather than the sand
        everything else is drawn on; the token carries the footer and the rail */
     document.body.dataset.ground = 'white'
@@ -98,11 +98,11 @@ export default function Recoolit() {
       <header id="background" className={`${base.wide} ${base.hero} ${base.anchor}`}>
         <div className={base.heroText}>
           <h1 className={base.title}>
-            Designing a compelling narrative around an overlooked climate problem
+            Crafting a compelling narrative around an overlooked climate problem
           </h1>
           <p className={base.subtitle}>
             Recoolit is a climate tech startup that captures and destroys harmful refrigerant waste
-            from cooling devices.
+            from cooling devices. I helped redesign their website to gain customers and investors.
           </p>
         </div>
         <hr className={base.rule} />
@@ -127,7 +127,7 @@ export default function Recoolit() {
             <dd>
               Landed a{' '}
               <a
-                className={styles.metaLink}
+                className={styles.link}
                 href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-eliminating-superpollutants-to-help-atmosphere/"
                 target="_blank"
                 rel="noreferrer"
@@ -154,12 +154,9 @@ export default function Recoolit() {
       <div className={base.sections}>
         <section className={`${base.col} ${base.intro}`}>
           <h2 className={base.heading}>Project Overview</h2>
-          <p className={base.lede}>
-            Recoolit is a climate tech startup that captures and destroys harmful refrigerant waste
-            from cooling devices, which otherwise creates massive environmental impact.
-          </p>
+       
           <p className={base.copy}>
-            Their initial web app was unstyled bootstrap, wasn’t getting much engagement, and didn’t
+            Recoolit is a climate tech startup reducing massive environmental impact from refrigerants. Their initial web app was unstyled bootstrap, wasn’t getting much engagement, and didn’t
             reflect their impactful work in the space. They wanted a:
           </p>
           <ul className={styles.list}>
@@ -220,7 +217,7 @@ export default function Recoolit() {
         <section className={`${base.col} ${styles.challenge}`}>
           <p className={styles.challengeLabel}>The Challenge</p>
           <h2 className={styles.challengeText}>
-            Effectively conveying Recoolit’s mission and why it matters to customers, investors, and
+            Effectively convey Recoolit’s mission and why it matters to customers, investors, and
             partners.
           </h2>
         </section>
@@ -229,14 +226,14 @@ export default function Recoolit() {
           <div className={`${styles.textCol} ${base.block}`}>
             <h2 className={base.heading}>Learning from competitors</h2>
             <p className={base.copy}>
-              The competitors that caught my eye right away featured large hero images with striking
+              Looking at competitor sites, many featured large hero images with striking
               photos of our earth. This immediately conveyed a sense of a collective mission. The
               websites that effectively communicated a clear story also struck a perfect balance
               between informative and concise text.
             </p>
             <p className={base.copy}>
               Recoolit stood out amongst its competitors for the high quality of its carbon offsets
-              and its transparency, which I decided to emphasize on its website.
+              and their transparency, which I decided to emphasize on the website.
             </p>
           </div>
 
@@ -255,7 +252,7 @@ export default function Recoolit() {
 
           <div className={`${styles.textCol} ${base.block} ${base.tight}`}>
             <p className={base.copy}>
-              From my competitive analysis, I found the opportunity to utilize the following features
+              From a competitive analysis, I found the opportunity to utilize the following features
               on Recoolit’s home page:
             </p>
             <ul className={styles.list}>
@@ -273,8 +270,8 @@ export default function Recoolit() {
           <div className={`${base.col} ${base.block}`}>
             <SectionHead eyebrow="Design process" heading="Telling a clear and compelling narrative" />
             <p className={base.copy}>
-              In order to tell a more coherent story, I consolidated and condensed information about
-              what Recoolit did from four separate pages to one explainer page. I used copywriting
+              To tell a more coherent story, I consolidated and condensed information about
+              what Recoolit did <strong> from four separate pages to one explainer page </strong>. I used copywriting
               strategies and findings from competitive research to craft a explainer page narrative
               using story frames. This helped communicate page priority and flow early in the
               project.
@@ -305,8 +302,8 @@ export default function Recoolit() {
             <p className={base.copy}>
               Crafting copy that struck the perfect balance between being informative and concise was
               a big focus and challenge. I prioritized refining the explainer page within a Google
-              Doc, where I actively sought and incorporated feedback from two groups: potential users
-              who were newcomers to the industry, and stakeholders with deep industry knowledge.
+              Doc, where I actively sought and incorporated feedback from two groups: <strong> potential customers </strong>
+              who were newcomers to the industry, and <strong> expert stakeholders </strong> with deep industry knowledge. 
             </p>
             <p className={base.copy}>
               This approach allowed me to ensure the message was accurate yet easy to understand for
@@ -459,7 +456,7 @@ export default function Recoolit() {
             />
             <figcaption className={styles.artNote}>
               Instead of a wall of text explaining how it works, I visualized the process to make it
-              more clear
+              more clear.
             </figcaption>
           </figure>
         </section>
@@ -510,8 +507,8 @@ export default function Recoolit() {
               data-zoom
               src={partners}
               alt="The our partners section: fifteen partner logos laid out in a grid under one line about the transition"
-              width={1440}
-              height={841}
+              width={1137}
+              height={697}
               loading="lazy"
             />
             <figcaption className={styles.artNote}>
@@ -608,10 +605,39 @@ export default function Recoolit() {
         <section id="reflections" className={`${base.col} ${base.block} ${base.anchor}`}>
           <SectionHead eyebrow="Reflections" heading="Impact" />
           <p className={base.copy}>
-            Since the launch of my redesign, Recoolit has secured two critical partnerships with
-            Sequestr and Wren, the leading carbon marketplace for individuals. These partnerships
-            cover all existing operating expenses, enabling Recoolit to shift their focus from
-            survival to growth.
+            After the launch of my redesign, Recoolit secured two critical partnerships with{' '}
+            <a
+              className={styles.link}
+              href="https://www.sequestr.io/blog/mission-gigatonne-recoolits-2030-target"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Sequestr
+            </a>{' '}
+            and{' '}
+            <a
+              className={styles.link}
+              href="https://www.wren.co/blog/recoolit-welcome-letter"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Wren
+            </a>
+            , the leading carbon marketplace for individuals.
+          </p>
+          <p className={base.copy}>
+            They also secured a partnership with{' '}
+            <a
+              className={styles.link}
+              href="https://blog.google/company-news/outreach-and-initiatives/sustainability/google-eliminating-superpollutants-to-help-atmosphere/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Google
+            </a>{' '}
+            to remove 25,000 tons of superpollutants by 2030. These partnerships cover all existing
+            operating expenses, enabling Recoolit to{' '}
+            <strong>shift their focus from survival to growth.</strong>
           </p>
         </section>
 
@@ -624,18 +650,12 @@ export default function Recoolit() {
           <ol className={styles.steps}>
             <li>
               <strong>Increasing customer value</strong> by redesigning the registry and purchase
-              receipt page, making each purchase feel impactful. Take advantage of Recoolit’s
-              traceability, and show the impact of a user’s entire lifecycle in an interactive,
-              user-friendly format.
+              receipt page, making each purchase feel impactful. I want to take advantage of Recoolit’s
+              traceability and show the impact of a user’s entire lifecycle in an interactive format.
             </li>
             <li>
               <strong>Improving interactivity</strong> to tell a better story. Explore using animation
-              and scrollytelling techniques to make their story and website more engaging.
-            </li>
-            <li>
-              <strong>Ensuring the website is accessible and useful to partners in Indonesia.</strong>{' '}
-              Conduct tests with users in Indonesia and make sure they can achieve their goals on the
-              site.
+              and scrollytelling to make their website more engaging.
             </li>
             <li>
               <strong>Tracking page views, session duration, bounce rate, and conversion</strong> to
@@ -661,13 +681,10 @@ export default function Recoolit() {
               </div>
               <div>
                 <h2 className={base.heading}>
-                  Utilize an 8px grid for more consistent layout and spacing.
+                  Good design balances user needs and business goals.
                 </h2>
                 <p className={base.copy}>
-                  I initially used arbitrary column sizes and vertical spacing, but cleaned everything
-                  up midway through in order for consistency and to reduce the workload for the
-                  developer. Next time, I’ll start with a defined spacing system and use an 8px grid
-                  layout from the beginning for a more seamless handoff.
+                  Every design decision from content hierarchy to calls to action needed to help visitors understand Recoolit's value while supporting the company's conversion goals.
                 </p>
               </div>
             </div>

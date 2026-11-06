@@ -13,8 +13,8 @@
   column-gap: max(4px, calc(28 * var(--s)));
 }
 
-/* the one link in the header: it has to read as a link without shouting */
-.metaLink {
+/* links in the writing: they have to read as links without shouting */
+.link {
   color: var(--charcoal);
   text-decoration: underline;
   text-decoration-color: var(--ember);
@@ -22,8 +22,8 @@
   text-underline-offset: 3px;
 }
 
-.metaLink:hover,
-.metaLink:focus-visible {
+.link:hover,
+.link:focus-visible {
   color: var(--ember-deep);
   text-decoration-color: var(--ember-deep);
 }
