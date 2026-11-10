@@ -156,7 +156,7 @@ export default function Recoolit() {
           <h2 className={base.heading}>Project Overview</h2>
        
           <p className={base.copy}>
-            Recoolit is a climate tech startup reducing massive environmental impact from refrigerants. Their initial web app was unstyled bootstrap, wasn’t getting much engagement, and didn’t
+            Recoolit is a climate startup tackling refrigerants gases 2000x more potent than CO2. Recoolit's initial website was unstyled bootstrap, wasn’t getting much engagement, and didn’t
             reflect their impactful work in the space. They wanted a:
           </p>
           <ul className={styles.list}>
@@ -186,7 +186,7 @@ export default function Recoolit() {
         <section id="research" className={`${base.col} ${base.block} ${base.anchor}`}>
           <SectionHead eyebrow="Research" heading="Defining the problem" />
           <p className={base.copy}>
-            After running a few usability tests on first-time users, I noticed a significant problem:
+            Recoolit was doing important work removing refrigerants in Indonesia,  but after running a few usability tests on first-time users, I noticed a significant problem:
             users don’t know what the heck Recoolit is doing. Information about their work is
             scattered across multiple pages, and explained with way too many words.
           </p>
@@ -670,21 +670,21 @@ export default function Recoolit() {
             <div className={base.learnings}>
               <div>
                 <h2 className={base.heading}>
-                  Effective UX writing can be powerful in telling a compelling story.
+                  Storytelling is both copywriting and visual design.
                 </h2>
                 <p className={base.copy}>
-                  I realized through user testing that the length of my sentences, word choice, and
-                  information placement all directly affect users’ comprehension of our mission and
+                  I learned through user testing that sentence lengths,
+                  content structure, and information visualization all directly affect users’ comprehension of the product and
                   their likelihood to convert. Conducting tests specifically focused on the copy
                   proved to be extremely valuable.
                 </p>
               </div>
               <div>
                 <h2 className={base.heading}>
-                  Good design balances user needs and business goals.
+                  Designing for impact means balances user needs and business goals.
                 </h2>
                 <p className={base.copy}>
-                  Every design decision from content hierarchy to calls to action needed to help visitors understand Recoolit's value while supporting the company's conversion goals.
+                  Working on a mission-driven product taught me that communicating an important cause isn't enough. I needed to consider what would motivate visitors to take action and put money in to the product, in order to keep the mission going. 
                 </p>
               </div>
             </div>
@@ -695,7 +695,7 @@ export default function Recoolit() {
 
         <NextProject
           className={base.wide}
-          to="/work/finding-magic-on-the-road"
+          to="/work/road-trip-jam"
           title="Making Road Trips Magical with Google Maps"
           image={roadTripHero}
         />

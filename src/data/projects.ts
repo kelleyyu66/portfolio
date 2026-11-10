@@ -119,7 +119,7 @@ const placeholderStudy: Pick<Project, 'outcome' | 'meta' | 'highlights' | 'heroI
 
 export const featuredProjects: Project[] = [
   {
-    slug: 'finding-magic-on-the-road',
+    slug: 'road-trip-jam',
     company: 'Google Maps',
     logo: googleMaps,
     tags,
@@ -139,7 +139,7 @@ export const featuredProjects: Project[] = [
     logo: playbookMark,
     tags: ['Product Design', 'UX Research', 'AI', 'Early-stage startup'],
     title: 'Meeting Investors Where They Work',
-    cardTitle: 'Meeting Investors Where They Are',
+    cardTitle: 'Meeting Investors Where They Work',
     // the card loops the hero animation while it is on screen, trimmed a
     // little off the top and bottom of the recording's own proportions
     cardMedia: 'playbook',
@@ -152,7 +152,7 @@ export const featuredProjects: Project[] = [
     company: 'Recoolit',
     logo: recoolitMark,
     tags: ['Web Design', 'UX Writing', 'Branding', 'Climate Tech'],
-    title: 'Designing a compelling narrative around an overlooked climate problem.',
+    title: 'Taking a climate startup from survival to growth',
     cardTitle: 'Recoolit Redesign',
     image: recoolitHero,
     imageAspect: '3 / 2',

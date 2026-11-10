@@ -447,7 +447,7 @@ export default function RoadTripJam() {
         <NextProject
           className={styles.wide}
           to="/work/playbook"
-          title="Meeting Investors Where They Already Work"
+          title="Meeting Investors Where They Work"
           image={playbookHeroPoster}
         />
       </div>

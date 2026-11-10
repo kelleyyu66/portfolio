@@ -14,7 +14,13 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="work" element={<Placeholder title="work" />} />
         {/* written pages; the rest still use the template */}
-        <Route path="work/finding-magic-on-the-road" element={<RoadTripJam />} />
+        <Route path="work/road-trip-jam" element={<RoadTripJam />} />
+        {/* the Road Trip Jam study was published under its old slug; keep that
+            URL working for anyone who already has it */}
+        <Route
+          path="work/finding-magic-on-the-road"
+          element={<Navigate to="/work/road-trip-jam" replace />}
+        />
         <Route path="work/playbook" element={<Playbook />} />
         <Route path="work/recoolit" element={<Recoolit />} />
         <Route path="work/:slug" element={<CaseStudy />} />
