@@ -6,6 +6,7 @@ import CaseStudy from './pages/CaseStudy'
 import RoadTripJam from './pages/RoadTripJam'
 import Playbook from './pages/Playbook'
 import Recoolit from './pages/Recoolit'
+import About from './pages/About'
 
 export default function App() {
   return (
@@ -25,7 +26,7 @@ export default function App() {
         <Route path="work/recoolit" element={<Recoolit />} />
         <Route path="work/:slug" element={<CaseStudy />} />
         <Route path="playground" element={<Placeholder title="playground" />} />
-        <Route path="about" element={<Placeholder title="about" />} />
+        <Route path="about" element={<About />} />
         <Route path="resume" element={<Placeholder title="resume" />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>

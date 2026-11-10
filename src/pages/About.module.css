@@ -1,0 +1,281 @@
+/*
+ * About — the home page's warm sand, carried the whole way down. Three beats,
+ * each on the case studies' 1030 measure: the portrait and who she is, then
+ * two halves-and-halves that alternate which side the picture is on.
+ */
+.page {
+  --wide: min(100% - 40px, max(544px, calc(1030 * var(--s))));
+  --gap: max(40px, calc(68 * var(--s)));
+  --split: calc(72 * var(--s));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap);
+  padding: max(40px, calc(72 * var(--s))) 0 max(72px, calc(120 * var(--s)));
+  background: var(--sand);
+}
+
+.wide {
+  width: var(--wide);
+}
+
+.copy {
+  font: 400 var(--size-body) / 1.7 var(--font-text);
+  color: var(--body-dark);
+}
+
+/* ---------- the portrait and who she is ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: calc(360 * var(--s)) 1fr;
+  gap: calc(84 * var(--s));
+  align-items: center;
+}
+
+/*
+ * The arch, at the photograph's own 3:4. It is cut to no other shape and
+ * scaled to no other proportion, so the frame takes nothing off the sides or
+ * the ends — only the two top corners, which hold blossom and nothing else.
+ */
+.portrait {
+  position: relative;
+  aspect-ratio: 3 / 4;
+}
+
+/*
+ * The arch itself, and the thing that clips. It is a wrapper rather than the
+ * photograph because the photograph is scaled up inside it — a radius on the
+ * image would grow with the image and take the arch along with it.
+ *
+ * A true half-round dome at any size. The two numbers are the horizontal and
+ * vertical radii: 50% of the width each across the top makes the two corners
+ * meet in a semicircle, and 37.5% of the height is that same half-width read
+ * against this frame's 3:4. A radius in --s would flatten the arch wherever
+ * the frame stops scaling and the radius doesn't.
+ */
+.frame {
+  width: 100%;
+  height: 100%;
+  overflow: clip;
+  border-radius: 50% 50% 5% 5% / 37.5% 37.5% 3.75% 3.75%;
+  box-shadow: var(--shadow-warm);
+}
+
+/*
+ * Grown 8% and hung from the bottom edge: her feet stay on the frame's floor
+ * and the extra goes off the top, where there is nothing but blossom.
+ */
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.08);
+  transform-origin: 50% 100%;
+}
+
+/* one lily from the pond, tucked under the near corner */
+.portrait img.lily {
+  position: absolute;
+  left: calc(-54 * var(--s));
+  bottom: calc(-28 * var(--s));
+  width: calc(104 * var(--s));
+  min-width: 60px;
+  height: auto;
+  pointer-events: none;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: calc(22 * var(--s));
+}
+
+.title {
+  font: var(--type-display-sm);
+  letter-spacing: var(--tracking-display);
+  color: var(--heading);
+}
+
+/* ---------- the two halves ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--split);
+  align-items: center;
+}
+
+/*
+ * The pile is the exception. Five cards at the width they were drawn at come
+ * to 1250px of card; overlapped as lightly as the three used to be they still
+ * want the whole 1030 measure, so this row stacks — the sentence above, the
+ * pile under it — rather than giving up half the run to a column of text.
+ */
+.hobbies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(26 * var(--s));
+}
+
+.hobbies > .copy {
+  /* a measure, not a cage: below about 970px the floor takes over, or the
+     sentence would end up in a 150px ribbon on a phone */
+  max-width: min(100%, max(380px, calc(560 * var(--s))));
+  text-align: center;
+}
+
+/* ---------- Ripple ---------- */
+.rippleSlot {
+  display: flex;
+  justify-content: center;
+}
+
+/*
+ * The recording is a phone on a white backdrop, and nothing short of a second
+ * encode would cut that white out of an mp4. Multiplying it into the sand does
+ * the same job in one line: white leaves nothing behind, so the phone stands on
+ * the page with no panel and no frame around it. The cost is that the app's own
+ * whites take the ground's warmth — about two per cent, and the better for it.
+ */
+.ripple {
+  width: calc(244 * var(--s));
+  min-width: 180px;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+/*
+ * Five prints in a pile, each at the width they were first drawn at, laid over
+ * one another by a fixed margin so the row fits its column. The pointer opens
+ * them: only the transform moves, so nothing reflows and the hover costs
+ * nothing. The middle card is nearest, the outer ones furthest back.
+ */
+.fan {
+  display: flex;
+  justify-content: center;
+  padding: calc(16 * var(--s)) 0;
+}
+
+/*
+ * flex: none matters — left to shrink, five cards would quietly come in under
+ * the width they are set at and the pile would be smaller than it reads here.
+ */
+.fan img {
+  flex: none;
+  width: calc(236 * var(--s));
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: calc(12 * var(--s));
+  border: calc(7 * var(--s)) solid #fff;
+  box-shadow: var(--shadow-card);
+  transition: transform 300ms var(--ease-ripple);
+}
+
+/* 5 x 250 of card, less four of these, is 970 — inside the 1030 measure */
+.fan img + img {
+  margin-left: calc(-70 * var(--s));
+}
+
+.fan img:nth-child(1) { z-index: 1; transform: rotate(-9deg) translateY(calc(8 * var(--s))); }
+.fan img:nth-child(2) { z-index: 2; transform: rotate(-4deg) translateY(calc(1 * var(--s))); }
+.fan img:nth-child(3) { z-index: 3; transform: translateY(calc(-6 * var(--s))); }
+.fan img:nth-child(4) { z-index: 2; transform: rotate(4deg) translateY(calc(1 * var(--s))); }
+.fan img:nth-child(5) { z-index: 1; transform: rotate(9deg) translateY(calc(8 * var(--s))); }
+
+.fan:hover img:nth-child(1),
+.fan:focus-within img:nth-child(1) {
+  transform: rotate(-13deg) translate(calc(-28 * var(--s)), calc(10 * var(--s)));
+}
+
+.fan:hover img:nth-child(2),
+.fan:focus-within img:nth-child(2) {
+  transform: rotate(-6deg) translate(calc(-14 * var(--s)), calc(1 * var(--s)));
+}
+
+.fan:hover img:nth-child(4),
+.fan:focus-within img:nth-child(4) {
+  transform: rotate(6deg) translate(calc(14 * var(--s)), calc(1 * var(--s)));
+}
+
+.fan:hover img:nth-child(5),
+.fan:focus-within img:nth-child(5) {
+  transform: rotate(13deg) translate(calc(28 * var(--s)), calc(10 * var(--s)));
+}
+
+@media (max-width: 899px) {
+  .hero,
+  .split {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: calc(44 * var(--s));
+  }
+
+  .portrait {
+    width: min(100%, 340px);
+  }
+
+  /*
+   * The heading sits under the centred portrait; the paragraphs stay ranged
+   * left, because a centred block of body copy is a ragged shape to read.
+   */
+  .title {
+    text-align: center;
+  }
+
+  .intro,
+  .split > .copy {
+    width: 100%;
+  }
+
+  /* the picture leads the pair once it is stacked */
+  .split > .copy {
+    order: 2;
+  }
+
+  .rippleSlot {
+    order: 1;
+  }
+}
+
+/*
+ * A fan of five needs room to be a fan. Below this it would be five slivers,
+ * so the pile opens out into a plain gallery instead — same photographs, same
+ * size as each other, three to a row.
+ */
+@media (max-width: 699px) {
+  .fan {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 0;
+  }
+
+  .fan img,
+  .fan img + img {
+    width: 100%;
+    margin-left: 0;
+    border-width: 4px;
+    border-radius: 8px;
+  }
+
+  /*
+   * Spelled out per child because the stacking rules above are, and a plainer
+   * selector would lose to them.
+   */
+  .fan img:nth-child(1),
+  .fan img:nth-child(2),
+  .fan img:nth-child(3),
+  .fan img:nth-child(4),
+  .fan img:nth-child(5),
+  .fan:hover img:nth-child(1),
+  .fan:hover img:nth-child(2),
+  .fan:hover img:nth-child(4),
+  .fan:hover img:nth-child(5),
+  .fan:focus-within img:nth-child(1),
+  .fan:focus-within img:nth-child(2),
+  .fan:focus-within img:nth-child(4),
+  .fan:focus-within img:nth-child(5) {
+    transform: none;
+  }
+}
