@@ -52,7 +52,7 @@ function RippleLoop() {
       src={ripple}
       poster={ripplePoster}
       width={480}
-      height={970}
+      height={968}
       muted
       loop
       playsInline
