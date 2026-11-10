@@ -213,17 +213,21 @@
  * The ask is 16 words — 11s is about 85 words a minute, slow enough to finish
  * it without hurrying and to glance away and come back.
  */
+/*
+ * Each line names its own animation in full. Setting the timing on .line with
+ * a nameless `animation` shorthand and the name on the child reads tidier, but
+ * a nameless shorthand means animation-name: none — an animation that can
+ * never run — so the minifier is right to fold the whole declaration down to
+ * `animation: none`, duration and all, before the name below can supply it.
+ * That only shows up in a production build, where the CSS is minified.
+ */
 @media (prefers-reduced-motion: no-preference) {
-  .line {
-    animation: 20s ease-in-out infinite;
-  }
-
   .lineFirst {
-    animation-name: say-first;
+    animation: say-first 20s ease-in-out infinite;
   }
 
   .lineSecond {
-    animation-name: say-second;
+    animation: say-second 20s ease-in-out infinite;
   }
 }
 
